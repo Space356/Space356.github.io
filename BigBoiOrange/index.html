@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>BIGBOIOORRAANGGEE</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+
+        <script language="javascript">
+            var count = 0;
+            function oranges()
+            {
+				count ++;
+                document.getElementById("carrier").innerHTML = count;
+
+                var imager = document.getElementById('imageer')
+                var currWidth=imager.clientWidth;
+                imager.style.width=(currWidth+10)+"px";
+                imager.style.height="440px";
+
+                var busting = document.getElementById('buttr')
+                var currWidth=buttr.clientWidth;
+                buttr.style.width=(currWidth+10)+"px";
+            }
+            </script>
+
+            <style>
+                .button
+                {
+                background-color: white;
+                border: none;
+                outline: none;
+                }
+            </style>
+  </head>
+  <body>
+    <script src="script.js"></script>
+
+        <font face="Comic Sans MS">
+<font color="orange" size=500 >Big Boi <b>Orange</b> :
+    <p>
+        <font color="black" size=5 >Click The Orange!
+    <p>
+    Clicks: <b id="carrier"> 0 </b>    
+    <p>
+        <button class="button" id="buttr" onclick="oranges()"><img  src="orange.png" id="imageer">
+    </button>
+  </body>
+</html>
