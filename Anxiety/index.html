@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script language="JavaScript">
+      function doo()
+        {
+          setInterval(function()
+                      {
+                      var BEAN = document.getElementById("bean");
+                      var currSize = BEAN.clientWidth;
+                      var bdy = document.getElementById("hehe");
+                      BEAN.style.width = (currSize + 2)+ "px";
+
+                        if(currSize > 660)
+                        {
+                          bdy.style = "background-color : rgb("+(580-currSize*0.5)+",0,0)";
+
+                          document.getElementById("happy").innerHTML = "He is here!";
+                        }
+                        else
+                        {
+                          bdy.style = "background-color : rgb(255,"+(380-currSize*0.5)+","+(380-currSize*0.5)+")";
+                        }
+                      },500);
+        }
+    </script>
+  </head>
+  <body id="hehe" onload="doo()">
+    <h1 id="happy">He is coming...</h1>
+    <center>
+      <img src="MultiverseBean.png" id="bean" width="150px">
+    </center>
+  </body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Walfes</title>
+  <script language="javascript">
+    var save_width = 530;
+    var save_height = 309;
+    var img_size = 1;
+    var clicks = 0;
+
+    const Scream = new Audio();
+    Scream.src="Recording.m4a";
+    function update()
+    {
+      var waffles_pic = document.getElementById("waffles")
+      if(img_size > 1)
+      {
+        img_size -= (img_size-1)/8
+      }
+      waffles_pic.style.width = (save_width*img_size)+"px";
+      waffles_pic.style.height =(save_height*img_size)+"px";
+    }
+
+    function oranges()
+    {
+      clicks ++;
+      document.getElementById("ahh").innerHTML = clicks;
+      Scream.play();
+      img_size = 1.5
+    }
+    function laod()
+    {
+      setInterval(update,1000/60);
+    }
+  </script>
+  <style>
+      .button
+      {
+      background-color: black;
+      border: none;
+      outline: none;
+      }
+  </style>
+</head>
+
+<body onload="laod()" style="background-color: black;">
+  <font color="white">
+  <center>
+    <h1>Click Waffles</h1>
+    <p>
+     Hecking Clicks <b id="ahh">0</b>
+    </p>
+    <button class="button" onclick="oranges()"><img id="waffles" src="waffles.png"></button>
+  </center>
+</body>
+</html>

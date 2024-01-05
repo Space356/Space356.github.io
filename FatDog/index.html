@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .busting
+      {
+        display: Block;
+        border: 0;
+        cursor: pointer;
+      }
+      
+    </style>
+
+
+<title>ALLIE WISDOM</title>
+
+    <script language="javascript">
+
+      var Allie = 0;
+      function AllieFat()
+        {        
+          if(Allie != 2)
+          {
+            Allie = Math.floor(Math.random()*15);
+          }
+          else
+          {
+            Allie = -1;
+          }
+        var AllieNumbr = Math.floor(Math.random()*6);
+        var img = document.getElementById("AlliePic");
+        document.getElementById("Disclaimer").innerHTML = ""
+
+if(AllieNumbr == 0)
+{
+  img.src="Allie.png"
+  document.getElementById("Actions").innerHTML = "Allie is staring at you..."
+}
+if(AllieNumbr == 1)
+{
+  img.src="Allie2.png"
+    document.getElementById("Actions").innerHTML = "Allie is going to eat your hand..."
+}
+if(AllieNumbr == 2)
+{
+  img.src="Dominate.jpeg"
+  document.getElementById("Actions").innerHTML = "Allie is asserting her dominance..."
+}
+if(AllieNumbr == 3)
+{
+  img.src="Ascend.jpeg"
+  document.getElementById("Actions").innerHTML = "Allie is ascending..."
+}
+if(AllieNumbr == 4)
+{
+  img.src="DressUp.jpeg"
+  document.getElementById("Actions").innerHTML = "Allie stole your clothes..."
+}
+          if(AllieNumbr == 5)
+{
+  img.src="WhiteDog.jpeg"
+  document.getElementById("Actions").innerHTML = "White Dog joined the party..."
+}
+          
+if(Allie == 0)
+{
+  document.getElementById("Allie2").innerHTML = "FAT DOGS ARE FAT CUZ THEY HAVE SQUARE HEADS"
+}
+if(Allie == 1)
+{
+  document.getElementById("Allie2").innerHTML = "BOKE!!!"
+}
+if(Allie == 2)
+{
+  document.getElementById("Allie2").innerHTML = "THERE ONCE WAS AN ORANGE..."
+}
+if(Allie == -1)
+{
+  document.getElementById("Allie2").innerHTML = "THAT HAD NO WORMS!!!"
+}
+if(Allie == 3)
+{
+  document.getElementById("Allie2").innerHTML = "IF YOU EAT A SMALL RODENT, BOKE THE BONES BEFORE YOUR RULER HAS KNOWN!!!"
+}
+if(Allie == 4)
+{
+  document.getElementById("Allie2").innerHTML = "IF THE GRASS ACROSS THE STREET SHALL TRY TO KILL YOU, BOKE AT IT!!!"
+}
+if(Allie == 5)
+{
+  document.getElementById("Allie2").innerHTML = "RUN IF IT APPEARS FRIENDLY, IT COULD DECEIVE YOU!!!"
+}
+if(Allie == 6)
+{
+  document.getElementById("Allie2").innerHTML = "CHASE THE BEAR IF IT TRIES TO EAT YOU, FOR YOU MAY SCARE IT!!!"
+}
+if(Allie == 7)
+{
+  document.getElementById("Allie2").innerHTML = "THE WATER IS DEATH IF IT IS PUT ONTO YOU, BUT SAFE IF YOU PUT YOURSELF ONTO IT!!!"
+}
+if(Allie == 8)
+{
+  document.getElementById("Allie2").innerHTML = "BE AFRAID OF YOUR OWN KIND, ANYONE CAN BE AN IMPOSTOR ඞ"
+}
+if(Allie == 9)
+{
+  document.getElementById("Allie2").innerHTML = "CHASE BEARS, BUT FEAR SQUARES!!!"
+}
+if(Allie == 10)
+{
+  document.getElementById("Allie2").innerHTML = "GET TO THE HIGH GROUND, AND STEAL ALL OF THEIR FOOD!!!"
+}
+if(Allie == 11)
+{
+  document.getElementById("Allie2").innerHTML = "FEAR CAMERAS, FOR YOU DON'T KNOW WHO'S WATCHING!!!"
+}
+if(Allie == 12)
+{
+  document.getElementById("Allie2").innerHTML = "I'LL DO ANYTHING TO EAT A SQUIRREL,  INCLUDING JUMPING OFF OF A 2 STORY BUILDING AND LEARNING TO CLIMB LADDERS!!!"
+}
+if(Allie == 13)
+{
+  document.getElementById("Allie2").innerHTML = "EATTING GRASS WILL SURPASS!!! CHICKEN BONE YOU'LL TURN TO STONE!!!"
+}
+if(Allie == 14)
+{
+  document.getElementById("Allie2").innerHTML = "IT'S EITHER BE THERE, OR BE SQUARE!!! I WAS NEVER THERE!!!"
+}
+Boke.play();
+}
+    const Boke= new Audio();
+    Boke.src="Boke.wav";
+    </script>
+  
+  </head>
+  <body>
+<center>
+<font size="60"><b id="Allie2"></b>
+    
+<button class="busting" onclick ="AllieFat()"><img id="AlliePic" src="Allie.png" width="512px" height="512px">
+</button>
+  </center>
+  <p id="Actions"> CLICK ALLIE TO HEAR HER RANDOM WISDOM!!!</p>
+  <p></p>
+  <p id="Disclaimer"> WARNING!!! PLEASE DON'T TRY ANY OF ALLIE'S WISDOM AT HOME, FOR ALLIE IS ABLE TO WITH-STAND MORE THAN THE AVERAGE HUMAN!!!</p>
+  </body>
+</html>
