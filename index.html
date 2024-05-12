@@ -17,46 +17,208 @@
       a:active {
         color: blue;
       }
+      .border
+      {
+        border: 4px solid grey;
+        border-radius : 16px;
+      }
+      .center
+      {
+        margin: auto;
+        text-align : center;
+      }
+      .wrap
+      {
+        height: 100vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+        perspective: 10px;
+      }
+      .headdiv
+      {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        transform-style: preserve-3d;
+        z-index: -100;
+      }
+      .headimg
+      {
+        transform : translateZ(-20px) scale(3.5);
+      }
+      .bigboi
+      {
+        position: relative;
+        background-color : black;
+        width : 75%;
+      }
+      .descript
+      {
+        line-height : 1.5;
+        width : 75%;
+      }
+      .bgdiv
+      {
+        background-color : #202020;
+        width : 100%;
+        border-top: 4px solid grey;
+      }
+      .bgdiv2
+      {
+        position:relative;
+        background-color : #111111;
+        width : 75%;
+        height:100%;
+        border: 4px solid grey;
+        border-top: 1px solid grey;
+        top: -0.5px;
+      }
+      .leftdiv
+      {
+        position: relative; left: 10px; width: calc(50% - 20px);
+        padding: 10px;
+      }
+      .rightdiv
+      {
+        position: relative; left: calc(50% + 10px); width: calc(50% - 20px);
+      }
+      .leftimg
+      {
+        left:0px;
+        position: absolute;
+        margin: auto;
+        width: 50%;
+        height: 100%;
+      }
+      .rightimg
+      {
+        position: absolute;
+        right: 0px;
+        margin: auto;
+        width: 50%;
+        height: 100%;
+      }
+      .scale
+      {
+        position: relative;
+        max-width:100%;
+        max-height:80%;
+      }
     </style>
 </head>
 
-<body style="background-color: #202020;">
-  <center style="background-color: #111111; width: 75%; margin: auto; border: 4px solid grey">
-    <font size="10" color="white">
-      <div style="background: #555555; position: fixed; top:0%; left: 0%; width: 100%; border-bottom: 4px solid grey;">
-        <b>The Space Dev Hosting Thing!</b>
+<body style="background-color: #202020; margin:0 ">
+    <font size="5" color="white">
+    <div class="wrap">
+      <div class="headdiv">
+        <img class="headimg" src="degbg.jpg" width="100%">
       </div>
-      <font size="5">
-        <br>
-        <p>
-    Welcome to my showcasing/playtesting website! It is where you will find various JavaScript/Gamemaker projects of mine, and be able to playtest or entertain yourself with them. I had to move to GitHub from Repl.it with the new subscription hosting over on Repl.it.
-        </p>
-      <p>
-        Here is the list of my current uploaded projects:
-      </p>
-      <div style="border: 4px; border: 4px solid grey; border-radius: 32px; width: 75%; margin: auto; background-color: black">
-        <br>
-        <a href="/MultMass"><b>Multiverse Massacre</b><br><img src="MMBG.png" width="100%" height="100%"></a>
-        My latest game, Multiverse Massacre, is a level-based roguelite where you take the role of various beings across the multiverse, discovering new worlds to explore and find powerful items in. In some way or another, you have caused an instability within the multiverse, and your fellow denizens of the multiverse are becoming unstable. Your only choice is massacre!
-        <br><br>
-        <a href="/BigBoiOrange"><b>Big Boi Orange</b><br><img src="BigBoiOrange/orange.png" width="50%" height="50%"></a><br>
-        A beautiful website where you click an expanding orange!
-        <br><br>
-        <a href="/FatDog"><b>Fat Dog Wisdom</b><br><img src="FatDog/Allie.png" width="50%" height="50%"></a><br>
-        Hear the ancient wisdom of FatDog!
-        <br><br>
-        <a href="/Anxiety"><b>Anxiety</b><br><img src="Anxiety/MultiverseBean.png" width="50%" height="50%"></a><br>
-        ...
-        <br><br>
-        <a href="/Waffles"><b>Clicky Waffles</b><br><img src="Waffles/waffles.png" width="50%" height="50%"></a><br>
-        Click Waffles! (Brady's dog) I'm starting to realize most of my JavaScript projects are just clicking something.
-        <br>
-        <br>
-      </div>
-      Uh, yeah!
-      <img src="c0c0nut.png" width="500px" height="500px">c0c0ughnut</img>
-  </center>
-
+      <section>
+        <div class="border bigboi center" style="margin-top:200px; margin-bottom:175px; width:50%;">
+          <b style="font-size: 75px">The Space Dev Hosting Thing!</b>
+              <p class="descript center">
+          Welcome to my showcasing/playtesting website! It is where you will find various JavaScript/Gamemaker projects of mine, and be able to playtest or entertain yourself with them. I had to move to GitHub from Repl.it with the new subscription hosting over on Repl.it.
+              </p>
+        </div>
+        <div class="center bgdiv">
+          <div class="bgdiv2 center">
+            <h1>Here are my various projects:</h1>
+            <div class="bigboi border center">
+              <a class="leftimg" href="/MultMass">
+                <b>Multiverse Massacre</b>
+                <br>
+                <img class="scale" src="MMBG.png">
+              </a>
+              <div class="rightdiv">
+                <p>
+                My latest game, Multiverse Massacre, is a level-based roguelite where you take the role of various beings across the multiverse, discovering new worlds to explore and find powerful items in. In some way or another, you have caused an instability within the multiverse, and your fellow denizens of the multiverse are becoming unstable. Your only choice is massacre!
+                </p>
+              </div>
+            </div>
+            <br>
+            <div class="bigboi border center">
+              <a class="rightimg" href="/MultMass">
+                <b>Big Boi Orange</b>
+                <br>
+                <img class="scale" src="BigBoiOrange/orange.png">
+              </a>
+              <div class="leftdiv">
+                <p>
+                  <br>
+                  <br>
+                  A beautiful website where you click an expanding orange!
+                  <br>
+                  <br>
+                  <br>
+                </p>
+              </div>
+            </div>
+            <br>
+            <div class="bigboi border center">
+              <a class="leftimg" href="/MultMass">
+                <b>FatDog Wisdom</b>
+                <br>
+                <img class="scale" src="FatDog/Allie.png">
+              </a>
+              <div class="rightdiv">
+                <p>
+                  <br>
+                  <br>
+                  Hear the ancient wisdom of FatDog! She will tell you of things only she can process, and you may be fearful of her dominance. (Random clicker thing)
+                  <br>
+                  <br>
+                  <br>
+                </p>
+              </div>
+            </div>
+            <br>
+            <div class="bigboi border center">
+              <a class="rightimg" href="/MultMass">
+                <b>Anxiety</b>
+                <br>
+                <img class="scale" src="Anxiety/MultiverseBean.png">
+              </a>
+              <div class="leftdiv">
+                <p>
+                  <br>
+                  <br>
+                  ...
+                  <br>
+                  <br>
+                  <br>
+                </p>
+              </div>
+            </div>
+            <br>
+            <div class="bigboi border center">
+              <a class="leftimg" href="/MultMass">
+                <b>Clicky Waffles</b>
+                <br>
+                <img class="scale" src="Waffles/waffles.png">
+              </a>
+              <div class="rightdiv">
+                <p>
+                  <br>
+                  <br>
+                  Click Waffles! (Brady's dog) I'm starting to realize most of my JavaScript projects are just clicking something.
+                  <br>
+                  <br>
+                  <br>
+                </p>
+              </div>
+            </div>
+            Uh, yeah!
+            <img src="c0c0nut.png" width="500px" height="500px">c0c0ughnut</img>
+          </div>
+        </div>
+      </section>
+    </div>
+  <font size="10">
+  <div class="center" style="background: #555555; position: fixed; top:-1px; left: 0%; width: 100%; border-bottom: 4px solid grey;">
+    <b>The Space Dev Hosting Thing!</b>
+  </div>
 </body>
 
 </html>
