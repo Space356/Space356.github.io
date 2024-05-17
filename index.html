@@ -2,6 +2,9 @@
 <html>
 
 <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Space 356 Hosting</title>
   <font color="white" face="Courier New">
     <style>
@@ -114,7 +117,24 @@
       {
         font-size:35px;
       }
+      .leftanim {
+          opacity: 0;
+          transform: translateX(-100px);
+          transition: all 0.7s ease-out;
+          transition-delay: 0.4s;
+      }
+      .rightanim {
+          opacity: 0;
+          transform: translateX(100px);
+          transition: all 0.7s ease-out;
+          transition-delay: 0.4s;
+      }
+      .scroll-animation {
+          opacity: 1;
+          transform: translateX(0);
+      }
     </style>
+    <script src="animation.js" defer></script>
 </head>
 
 <body style="background-color: #202020; margin:0 ">
@@ -123,7 +143,7 @@
       <div class="headdiv">
         <img class="headimg" src="degbg.jpg" width="100%">
       </div>
-      <section>
+      <section id="page">
         <div class="border bigboi center" style="margin-top:200px; margin-bottom:175px; width:50%;">
           <b style="font-size: 75px">The Space Dev Hosting Thing!</b>
               <p class="descript center">
@@ -135,7 +155,7 @@
         <div class="center bgdiv">
           <div class="bgdiv2 center">
             <h1>Here is the list of my current uploaded projects:</h1>
-            <div class="bigboi border center">
+            <div class="bigboi border center leftanim">
               <a class="leftimg" href="/MultMass">
                 <b class="projname">Multiverse Massacre</b>
                 <br>
@@ -148,7 +168,7 @@
               </div>
             </div>
             <br>
-            <div class="bigboi border center">
+            <div class="bigboi border center rightanim">
               <a class="rightimg" href="/BigBoiOrange">
                 <b class="projname">Big Boi Orange</b>
                 <br>
@@ -163,7 +183,7 @@
               </div>
             </div>
             <br>
-            <div class="bigboi border center">
+            <div class="bigboi border center leftanim">
               <a class="leftimg" href="/FatDog">
                 <b class="projname">FatDog Wisdom</b>
                 <br>
@@ -178,7 +198,7 @@
               </div>
             </div>
             <br>
-            <div class="bigboi border center">
+            <div class="bigboi border center rightanim">
               <a class="rightimg" href="/Anxiety">
                 <b class="projname">Anxiety</b>
                 <br>
@@ -193,7 +213,7 @@
               </div>
             </div>
             <br>
-            <div class="bigboi border center">
+            <div class="bigboi border center leftanim">
               <a class="leftimg" href="/Waffles">
                 <b class="projname">Clicky Waffles</b></h2>
                 <br>
