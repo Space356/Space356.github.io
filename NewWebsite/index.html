@@ -3,26 +3,59 @@
   <head>
     <title>Idk what this is</title>
     <style>
-      #div1 {
-        width: 350px;
-        height: 70px;
-        padding: 10px;
-        border: 1px solid #aaaaaa;
+      .list
+      {
+        position: absolute;
+        background-color: #DDDDDD;
+        border: 1px solid grey;
+        height: 100%;
+        width: calc(100%/4);
+      }
+
+      .inpt
+      {
+        margin-bottom: 10px;
+      }
+
+      li
+      {
+        background-color: lightblue;
+        border: 1px solid darkblue;
+        padding: 5px;
+        margin: auto;
+        border-radius: 16px;
+        width: 75%;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        list-style-type: none;
+      }
+      .todotab
+      {
+        background-color : red;
+        position: absolute;
+        width: 50%;
+        height: 50%;
       }
     </style>
-    <script src="drag.js" type="text/javascript"></script>
   </head>
   <body>
     Queasy Coffee. (Dunkin Caramel Macchiato)
-    <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-    <br>
-    <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-    <br>
-    <div id="drag1" draggable="true" ondragstart="drag(event)" style="background-color: red">
-      Hola.
+    <div>
+      <input type="text" id="new-item-input" class="inpt" placeholder="Enter a new item" />
+      <button onclick="addItem()">Add</button>
+      <div class="todotab">
+        <ul id="dynamic-list" class="list" style="left:0">
+          
+        </ul>
+        <ul id="doinglist" class="list" style="
+          left: 50%;
+          transform: translateX(-50%);">
+        </ul>
+        <ul id="donelist" class="list" style="right:0">
+    
+        </ul>
+      </div>
     </div>
-    <div id="drag1" draggable="true" ondragstart="drag(event)" style="background-color: red">
-      Hola.
-    </div>
+    <script src="todo.js"></script>
   </body>
 </html>
