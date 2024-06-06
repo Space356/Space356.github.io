@@ -1,1 +1,0 @@
-{"name" : "TILE TEST","killPoints" : 750,"tileset" : "official/worlds/tile_test_world/Tile_Set_Instability.png","enemies" : ["face_guy"],"items" : [],"ost" : "Sound_Of_Instability","fog_color" : [255,255,178],"fog_alpha" : 0.25,"roomsFile" : "official/worlds/tile_test_world/rooms1.mmrooms"}
