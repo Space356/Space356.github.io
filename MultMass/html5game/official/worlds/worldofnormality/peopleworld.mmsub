@@ -1,1 +1,1 @@
-{"name" : "PEOPLE WORLD","killPoints" : 500,"tileset" : "spr_tileset_normality","enemies" : ["face_guy"],"items" : [],"ost" : "The_Normal_People_World","fog_color" : [0,255,255],"fog_alpha" : 0.35,"roomsFile" : "official/worlds/worldofnormality/peopleworld.mmrooms"}
+{"name" : "PEOPLE WORLD","killPoints" : 500,"tileset" : "spr_tileset_normality","enemies" : ["face_guy","hedge_trimmer"],"items" : [],"ost" : "The_Normal_People_World","fog_color" : [0,255,255],"fog_alpha" : 0.25,"roomsFile" : "official/worlds/worldofnormality/peopleworld.mmrooms"}
