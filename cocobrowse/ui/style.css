@@ -1,0 +1,169 @@
+body
+{
+    margin : 0;
+}
+.workspace
+{
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    overflow:hidden;
+    user-select: none;
+}
+.tab_bar
+{
+    position : absolute;
+    background-color : #00000050;
+    padding: 8px;
+    border-radius: 16px;
+    left: 50%;
+    padding : 8px;
+    bottom: 0;
+    transform: translate(-50%, -50%);
+    height : 32px;
+    display: flex;
+    z-index: 100;
+}
+.tab_button
+{
+    background-color: #00000075;
+    color: white;
+    font-size: 24;
+    width:32px;
+    height:32px;
+    margin:0;
+    padding:0;
+    border: 2px solid white;
+    border-radius: 4px;
+}
+.tab_button:hover
+{
+    background-color: white;
+    color: black;
+}
+:root
+{
+    --topagain : 0px;
+    --leftagain : 0px;
+}
+.window
+{
+    background-color: white;
+    width : 960px;
+    height : 540px;
+    position : absolute;
+    border : 2px solid grey;
+    border-radius: 16px;
+    overflow : hidden;
+    box-shadow: 8px 8px 16px #00000075;
+    resize : both;
+    min-height: 32px;
+    min-width: 176px;
+    max-height: calc(100% - var(--topagain) - 4px);
+    max-width: calc(100% - var(--leftagain) - 4px);
+}
+.header
+{
+    top : 0;
+    position : relative;
+    width:100%;
+    height:32px;
+    border-bottom: 2px solid grey;
+    background-color: #252525;
+    display: flex;
+}
+.header_input
+{
+    width : calc(100% - 168px);
+    height : 75%;
+    position : relative;
+    top : 4px;
+    left : 4px;
+    border : 2px solid #303030;
+    border-radius: 8px;
+    background-color: black;
+    color : white;
+}
+.header_button
+{
+    position: absolute;
+    height : 75%;
+    width : 32px;
+    top : 4px;
+    color : white;
+    background-color: #00000000;
+    margin:0;
+    padding:2px;
+    border: 0;
+    border-radius: 8px;
+    justify-content: center;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+.header_button:hover
+{
+    margin:auto;
+    background-color: #55555599;
+}
+.webcontent
+{
+    width : 100%;
+    height : calc(100% - 53px);
+    position : relative;
+    top: 0;
+    border : 0;
+    zoom : 0.65;
+}
+.tab_img
+{
+    background-color: #00000000;
+    width:32px;
+    height:32px;
+    margin:0;
+    padding:2px;
+    border: 0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.tab_img:hover
+{
+    margin:auto;
+    background-color: #55555599;
+}
+.click_disable
+{
+    pointer-events: none;
+}
+.minimized
+{
+    resize: none;
+    width : 128px;
+    height : 32px;
+    min-width: 128px;
+    min-height: 32px;
+    max-width: 128px;
+    max-height: 32px;
+}
+.corner_button
+{
+    position: absolute;
+    height : 32px;
+    width : 32px;
+    bottom : 4px;
+    color : white;
+    background-color: #00000025;
+    margin:0;
+    padding:2px;
+    border: 0;
+    border-radius: 8px;
+    justify-content: center;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+.corner_button:hover
+{
+    margin:auto;
+    background-color: #55555599;
+}
