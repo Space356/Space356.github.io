@@ -2,6 +2,13 @@ body
 {
     margin : 0;
 }
+:root
+{
+    --topagain : 0px;
+    --leftagain : 0px;
+    --accent-color : black;
+    --text-color : white;
+}
 .workspace
 {
     background-color: black;
@@ -13,7 +20,7 @@ body
 .tab_bar
 {
     position : absolute;
-    background-color : #00000050;
+    background-color : color-mix(in srgb, var(--accent-color), #00000000 50%);
     padding: 8px;
     border-radius: 16px;
     left: 50%;
@@ -26,14 +33,14 @@ body
 }
 .tab_button
 {
-    background-color: #00000075;
-    color: white;
+    background-color: color-mix(in srgb, var(--accent-color), #00000000 25%);
+    color: var(--text-color);
     font-size: 24;
     width:32px;
     height:32px;
     margin:0;
     padding:0;
-    border: 2px solid white;
+    border: 2px solid var(--text-color);
     border-radius: 4px;
 }
 .tab_button:hover
@@ -41,18 +48,13 @@ body
     background-color: white;
     color: black;
 }
-:root
-{
-    --topagain : 0px;
-    --leftagain : 0px;
-}
 .window
 {
+    position : absolute;
     background-color: white;
     width : 960px;
     height : 540px;
-    position : absolute;
-    border : 2px solid grey;
+    border : 2px solid color-mix(in srgb, var(--accent-color), white 50%);
     border-radius: 16px;
     overflow : hidden;
     box-shadow: 8px 8px 16px #00000075;
@@ -61,6 +63,7 @@ body
     min-width: 176px;
     max-height: calc(100% - var(--topagain) - 4px);
     max-width: calc(100% - var(--leftagain) - 4px);
+    transition-delay: 0;
 }
 .header
 {
@@ -68,8 +71,8 @@ body
     position : relative;
     width:100%;
     height:32px;
-    border-bottom: 2px solid grey;
-    background-color: #252525;
+    border-bottom: 2px solid color-mix(in srgb, var(--accent-color), white 50%);
+    background-color: color-mix(in srgb, var(--accent-color), white 25%);
     display: flex;
 }
 .header_input
@@ -79,10 +82,10 @@ body
     position : relative;
     top : 4px;
     left : 4px;
-    border : 2px solid #303030;
+    border : 2px solid color-mix(in srgb, var(--accent-color), grey 35%);
     border-radius: 8px;
-    background-color: black;
-    color : white;
+    background-color: color-mix(in srgb, var(--accent-color), black 35%);
+    color : var(--text-color);
 }
 .header_button
 {
@@ -90,7 +93,7 @@ body
     height : 75%;
     width : 32px;
     top : 4px;
-    color : white;
+    color : var(--text-color);
     background-color: #00000000;
     margin:0;
     padding:2px;
@@ -109,7 +112,7 @@ body
 .webcontent
 {
     width : 100%;
-    height : calc(100% - 53px);
+    height : calc(100% - 52px);
     position : relative;
     top: 0;
     border : 0;
@@ -138,12 +141,29 @@ body
 .minimized
 {
     resize: none;
-    width : 128px;
+    /*width : 128px;
     height : 32px;
     min-width: 128px;
     min-height: 32px;
     max-width: 128px;
-    max-height: 32px;
+    max-height: 32px;*/
+    opacity: 0;
+    min-width: 0;
+    min-height: 0;
+    max-width: 0;
+    max-height: 0;
+}
+.maximized
+{
+    resize: none;
+    width : 100%;
+    height : 100%;
+    min-width: 100%;
+    min-height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    border : none;
+    border-radius: 0;
 }
 .corner_button
 {
@@ -151,8 +171,8 @@ body
     height : 32px;
     width : 32px;
     bottom : 4px;
-    color : white;
-    background-color: #00000025;
+    color : var(--text-color);
+    background-color: color-mix(in srgb, var(--accent-color), #00000000 75%);
     margin:0;
     padding:2px;
     border: 0;
@@ -166,4 +186,32 @@ body
 {
     margin:auto;
     background-color: #55555599;
+}
+.hover_hidden
+{
+    opacity: 0.0;
+    transition: all 0.7s ease-out;
+    transition-delay: 0;
+}
+.hover_hidden:hover
+{
+    opacity: 1.0;
+}
+.menu_section
+{
+    box-sizing: border-box;
+    padding: 8px;
+    color : var(--text-color);
+    width : 100%;
+    background-color: #80808080;
+    border-radius: 16px;
+    border : 0;
+}
+.menu_button
+{
+    color : var(--text-color);
+    padding : 8px;
+    border : 2px var(--text-color) solid;
+    background-color: var(--accent-color);
+    border-radius: 16px;
 }
