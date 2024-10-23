@@ -1,0 +1,15 @@
+{
+  "name": "cocobrowse",
+  "version": "1.0.0",
+  "description": "A web browser built with a desktop environment in mind.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "author": "Space 356",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^33.0.2"
+  }
+}
