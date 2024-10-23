@@ -215,3 +215,8 @@ body
     background-color: var(--accent-color);
     border-radius: 16px;
 }
+.split_hover
+{
+    background-color: #FFFFFF80;
+    border-radius: 16px;
+}
