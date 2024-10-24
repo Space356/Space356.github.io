@@ -67,6 +67,7 @@ document.addEventListener("mouseup", function ()
       const left_div = document.getElementById("split_left");
       if(left_div.classList.contains("split_hover"))
       {
+        holding.style.setProperty("--leftagain", "0px%");
         holding.style.left = "0px";
         holding.style.setProperty("width",left_div.style.width);
         left_div.classList.remove("split_hover");
@@ -76,13 +77,14 @@ document.addEventListener("mouseup", function ()
       if(right_div.classList.contains("split_hover"))
       {
         holding.style.left = String(window.innerWidth - right_div.clientWidth-4)+"px";
+        holding.style.setProperty("--leftagain", holding.style.left);
         holding.style.setProperty("width",right_div.style.width);
         right_div.classList.remove("split_hover");
       }
       holding.style.top = "0px";
-      holding.style.setProperty("max-height", "99.5%");
-      holding.style.setProperty("max-width", "99%");
-      holding.style.setProperty("height","100%");
+      holding.style.setProperty("--topagain", "0px");
+      holding.style.width = "50%";
+      holding.style.height ="100%";
       splitting = false;
     }
     holding = 0;

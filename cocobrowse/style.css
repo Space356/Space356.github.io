@@ -118,6 +118,7 @@ body
     border : 0;
     zoom : 0.65;
     display : flex;
+    scrollbar-color: var(--accent-color);
 }
 .tab_img
 {
