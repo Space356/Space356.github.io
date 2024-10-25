@@ -19,3 +19,8 @@ itemInput.addEventListener('keydown', function(event)
     addNewItem();
   }
 });
+
+function openNewTab()
+{
+  window.open("https://space356.github.io/NewWebsite", '_blank').focus();
+}
