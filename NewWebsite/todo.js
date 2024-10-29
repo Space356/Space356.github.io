@@ -22,5 +22,5 @@ itemInput.addEventListener('keydown', function(event)
 
 function openNewTab()
 {
-  window.open("https://space356.github.io/NewWebsite", '_blank').focus();
+  window.open("https://space356.github.io/MultMass", '_blank');
 }
