@@ -3,17 +3,17 @@ var tab_array = [];
 var maximized = false;
 var stored_top = "0px";
 var stored_left = "0px";
+var viewtype = "webview";
 
 function AppendTab()
 {
     if(tab_array.length < 25)
     {
-        let viewtype = "webview";
         //gets whether or not the app is running in a browser (replaces webviews with iframes)
-        if (!process.versions || !process.versions.electron)
+        /*if (typeof process.versions === "undefined" || typeof process.versions.electron === "undefined")
         {
             viewtype = "iframe";
-        }
+        }*/
         
         const workspace = document.getElementsByClassName("workspace")[0];
         const tab_bar = document.getElementsByClassName("tab_bar")[0];
@@ -189,7 +189,6 @@ function minimizeTab(id)
             windo.style.top = windo.style.getPropertyValue("--topagain");
             windo.style.left = windo.style.getPropertyValue("--leftagain");
         }
-        
     }
     else
     {
@@ -201,7 +200,7 @@ function minimizeTab(id)
             min_button.innerHTML = "━";
             min_button.style.fontSize = 10;
             _input.style.display = "initial";
-            //webcont.style.display = "initial";
+            webcont.style.display = "initial";
             windo.style.top = windo.style.getPropertyValue("--topagain");
             windo.style.left = windo.style.getPropertyValue("--leftagain");
         }
@@ -213,7 +212,7 @@ function minimizeTab(id)
             min_button.innerHTML = "＋";
             min_button.style.fontSize = 16;
             _input.style.display = "none";
-            //webcont.style.display = "none";
+            webcont.style.display = "none";
             windo.style.setProperty("--topagain", windo.style.top);
             windo.style.setProperty("--leftagain", windo.style.left);
             windo.style.top = "90%";
@@ -251,4 +250,13 @@ function openCustomize()
 {
     const webcontent = document.getElementById("cosmetics");
     webcontent.hidden = !webcontent.hidden;
+}
+
+function openTabDropdown(id)
+{
+    const workspace = document.getElementsByClassName("workspace")[0];
+    workspace.innerHTML += 
+    '<div id="'+id+'_options class="window">'+
+        '<button class="menu_button">This is an option</button>'+
+    '</div>'
 }
