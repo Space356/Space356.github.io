@@ -4,8 +4,9 @@ var maximized = false;
 var stored_top = "0px";
 var stored_left = "0px";
 var viewtype = "webview";
+var search_engine = "https://www.google.com";
 
-function AppendTab()
+function AppendTab(url)
 {
     if(tab_array.length < 25)
     {
@@ -14,6 +15,11 @@ function AppendTab()
         {
             viewtype = "iframe";
         }*/
+       var new_url = search_engine;
+        if(url)
+        {
+            new_url = url;
+        }
         
         const workspace = document.getElementsByClassName("workspace")[0];
         const tab_bar = document.getElementsByClassName("tab_bar")[0];
@@ -29,15 +35,31 @@ function AppendTab()
         content.onmousedown = function(){disable_mouse(rand_id)};
         content.onmouseup = function(){enable_mouse(rand_id)};
         //sets the innerHTML of the window div
-        content.innerHTML = '<div class="header" onmousedown="initializeMove('+rand_id+')">'+
-        '<input class="header_input" id="'+rand_id+'_input"></input>'+
-        '<button class="header_button" onclick="closeTab('+rand_id+')" style="right : 4px; font-size : 16; align-items: baseline;"><b>⤬</b></button>'+
-        '<button class="header_button" id="'+rand_id+'_maximize" onclick="maximizeTab('+rand_id+')" style="right : 36px; font-size : 16;"><b>▢</b></button>'+
-        '<button class="header_button" id="'+rand_id+'_minimize" onclick="minimizeTab('+rand_id+')" style="right : 68px; font-size : 10;"><b>━</b></button>'+
-        '<button class="header_button" id="'+rand_id+'_forward" onclick="goForwards('+rand_id+')" style="right : 100px; align-items: baseline;"><b>⮞</b></button>'+
-        '<button class="header_button" id="'+rand_id+'_back" onclick="goBackwards('+rand_id+')" style="right : 132px; align-items: baseline;"><b>⮜</b></button>'+
+        content.innerHTML = 
+        '<div id="'+rand_id+'_options" class="menu menu_minimize" style="left:0; top:33px; width:128px; z-index: 100;">'+
+            '<div class="menu_section">'+
+                '<button class="menu_button" onclick="closeTab('+rand_id+')">Close tab</button><br>'+
+                '<button class="menu_button">Reload Tab</button><br>'+
+                '<button class="menu_button" onclick="duplicateTab('+rand_id+')">Duplicate Tab</button><br>'+
+            '</div>'+
+            '<div class="menu_section">'+
+                '<button class="menu_button">Dock Left</button><br>'+
+                '<button class="menu_button">Dock Right</button><br>'+
+            '</div>'+
+            '<div class="menu_section">'+
+                '<button class="menu_button">Bookmark Tab</button><br>'+
+            '</div>'+
         '</div>'+
-        '<'+viewtype+' scrolling="yes" src="https://www.google.com" class="webcontent" id="'+String(rand_id)+'_webcontent"></'+viewtype+'>';
+        '<div class="header" onmousedown="initializeMove('+rand_id+')">'+
+            '<input class="header_input" id="'+rand_id+'_input"></input>'+
+            '<button class="header_button" id="'+rand_id+'_dropdown" onclick="openTabDropdown('+rand_id+')" style="left : 4px; font-size : 16;"><b>⏷</b></button>'+
+            '<button class="header_button" onclick="closeTab('+rand_id+')" style="right : 4px; font-size : 16; align-items: baseline;"><b>⤬</b></button>'+
+            '<button class="header_button" id="'+rand_id+'_maximize" onclick="maximizeTab('+rand_id+')" style="right : 36px; font-size : 16;"><b>▢</b></button>'+
+            '<button class="header_button" id="'+rand_id+'_minimize" onclick="minimizeTab('+rand_id+')" style="right : 68px; font-size : 10;"><b>━</b></button>'+
+            '<button class="header_button" id="'+rand_id+'_forward" onclick="goForwards('+rand_id+')" style="right : 100px; align-items: baseline;"><b>⮞</b></button>'+
+            '<button class="header_button" id="'+rand_id+'_back" onclick="goBackwards('+rand_id+')" style="right : 132px; align-items: baseline;"><b>⮜</b></button>'+
+        '</div>'+
+        '<'+viewtype+' scrolling="yes" src="'+new_url+'" class="webcontent" id="'+String(rand_id)+'_webcontent"></'+viewtype+'>';
         workspace.append(content);
         //for indexing
         tab_array.push(rand_id);
@@ -104,7 +126,7 @@ function enable_mouse(id)
         entry.classList.remove("click_disable");
     })
     console.log("Calling mouse enable.");
-    windo.style.transition = "all 0.3s ease";
+    windo.style.transition = "all 0.3s ease";//was 0.3
 }
 
 function goToUrl(id)
@@ -254,9 +276,20 @@ function openCustomize()
 
 function openTabDropdown(id)
 {
-    const workspace = document.getElementsByClassName("workspace")[0];
-    workspace.innerHTML += 
-    '<div id="'+id+'_options class="window">'+
-        '<button class="menu_button">This is an option</button>'+
-    '</div>'
+    const dropdow = document.getElementById(id+"_options");
+    if(dropdow.classList.contains("menu_minimize"))
+    {
+        dropdow.classList.remove("menu_minimize");
+    }
+    else
+    {
+        dropdow.classList.add("menu_minimize");
+    }
+}
+
+function duplicateTab(id)
+{
+    const url = document.getElementById(id+"_webcontent").src;
+    console.log(url);
+    AppendTab(url);
 }
