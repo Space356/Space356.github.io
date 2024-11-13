@@ -170,7 +170,7 @@ function minimizeTab(id)
     const back_button = document.getElementById(id+"_back");
     const forward_button = document.getElementById(id+"_forward");
     const min_button = document.getElementById(id+"_minimize");
-    const webcont = document.getElementById(id+"_webcontent");
+    //const webcont = document.getElementById(id+"_webcontent");
     const _input = document.getElementById(id+"_input");
 
     //if a tab is maximized, it will return the maximized tab to normal as to display the tab you click on
@@ -193,7 +193,7 @@ function minimizeTab(id)
             min_button.innerHTML = "＋";
             min_button.style.fontSize = 16;
             _input.style.display = "none";
-            webcont.style.display = "none";
+            //webcont.style.display = "none";
             windo.style.setProperty("--topagain", windo.style.top);
             windo.style.setProperty("--leftagain", windo.style.left);
             windo.style.top = "90%";
@@ -207,7 +207,7 @@ function minimizeTab(id)
             min_button.innerHTML = "━";
             min_button.style.fontSize = 10;
             _input.style.display = "initial";
-            webcont.style.display = "initial";
+            //webcont.style.display = "initial";
             windo.style.top = windo.style.getPropertyValue("--topagain");
             windo.style.left = windo.style.getPropertyValue("--leftagain");
         }
@@ -222,7 +222,7 @@ function minimizeTab(id)
             min_button.innerHTML = "━";
             min_button.style.fontSize = 10;
             _input.style.display = "initial";
-            webcont.style.display = "initial";
+            //webcont.style.display = "initial";
             windo.style.top = windo.style.getPropertyValue("--topagain");
             windo.style.left = windo.style.getPropertyValue("--leftagain");
         }
@@ -234,7 +234,7 @@ function minimizeTab(id)
             min_button.innerHTML = "＋";
             min_button.style.fontSize = 16;
             _input.style.display = "none";
-            webcont.style.display = "none";
+            //webcont.style.display = "none";
             windo.style.setProperty("--topagain", windo.style.top);
             windo.style.setProperty("--leftagain", windo.style.left);
             windo.style.top = "90%";
