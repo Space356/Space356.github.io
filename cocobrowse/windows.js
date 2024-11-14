@@ -59,7 +59,7 @@ function AppendTab(url)
             '<button class="header_button" id="'+rand_id+'_forward" onclick="goForwards('+rand_id+')" style="right : 100px; align-items: baseline;"><b>⮞</b></button>'+
             '<button class="header_button" id="'+rand_id+'_back" onclick="goBackwards('+rand_id+')" style="right : 132px; align-items: baseline;"><b>⮜</b></button>'+
         '</div>'+
-        '<'+viewtype+' scrolling="yes" src="'+new_url+'" class="webcontent" id="'+String(rand_id)+'_webcontent"></'+viewtype+'>';
+        '<'+viewtype+' scrolling="yes" src="'+new_url+'" class="webcontent" onload="updateURL('+rand_id+')" did-finish-load="updateURL('+rand_id+')" id="'+String(rand_id)+'_webcontent"></'+viewtype+'>';
         workspace.append(content);
         //for indexing
         tab_array.push(rand_id);
@@ -292,4 +292,11 @@ function duplicateTab(id)
     const url = document.getElementById(id+"_webcontent").src;
     console.log(url);
     AppendTab(url);
+}
+
+function updateURL(id)
+{
+    const url = document.getElementById(id+"_webcontent").src;
+    const input = document.getElementById(id+"_input");
+    input.value = url;
 }
