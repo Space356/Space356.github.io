@@ -253,3 +253,19 @@ body
     background-color: #FFFFFF80;
     border-radius: 16px;
 }
+.split_bar
+{
+    position: absolute;
+    background-color: var(--text-color);
+    border: solid 8px var(--text-color);
+    top : 0px;
+    height : 100%;
+    width : 1px;
+}
+.docked
+{
+    top : 0px;
+    height : 100%;
+    border : 0;
+    resize: none;
+}

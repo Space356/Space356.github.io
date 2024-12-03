@@ -67,18 +67,22 @@ document.addEventListener("mouseup", function ()
       const left_div = document.getElementById("split_left");
       if(left_div.classList.contains("split_hover"))
       {
-        holding.style.setProperty("--leftagain", "0px%");
+        /*holding.style.setProperty("--leftagain", "0px%");
         holding.style.left = "0px";
-        holding.style.setProperty("width",left_div.style.width);
+        holding.style.setProperty("width",left_div.style.width);*/
+        left_div.appendChild(holding);
+        holding.classList.add("maximized");
         left_div.classList.remove("split_hover");
       }
 
       const right_div = document.getElementById("split_right");
       if(right_div.classList.contains("split_hover"))
       {
-        holding.style.left = String(window.innerWidth - right_div.clientWidth-4)+"px";
+        /*holding.style.left = String(window.innerWidth - right_div.clientWidth-4)+"px";
         holding.style.setProperty("--leftagain", holding.style.left);
-        holding.style.setProperty("width",right_div.style.width);
+        holding.style.setProperty("width",right_div.style.width);*/
+        right_div.appendChild(holding);
+        holding.classList.add("maximized");
         right_div.classList.remove("split_hover");
       }
       holding.style.top = "0px";
