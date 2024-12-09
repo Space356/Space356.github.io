@@ -52,7 +52,7 @@ function AppendTab(url)
         '</div>'+
         '<div class="header" onmousedown="initializeMove('+rand_id+')">'+
             '<input class="header_input" id="'+rand_id+'_input"></input>'+
-            '<button class="header_button" id="'+rand_id+'_dropdown" onclick="openTabDropdown('+rand_id+')" style="left : 4px; font-size : 16;"><b>⏷</b></button>'+
+            '<button class="header_button" id="'+rand_id+'_dropdown" onclick="openTabDropdown('+rand_id+')" style="left : 4px; font-size : 16;"><b><img id="'+rand_id+'_icon" src="http://www.google.com/s2/favicons?sz=64&domain='+new_url+'" style="width : 100%; height : 100%"></b></button>'+
             '<button class="header_button" onclick="closeTab('+rand_id+')" style="right : 4px; font-size : 16; align-items: baseline;"><b>⤬</b></button>'+
             '<button class="header_button" id="'+rand_id+'_maximize" onclick="maximizeTab('+rand_id+')" style="right : 36px; font-size : 16;"><b>▢</b></button>'+
             '<button class="header_button" id="'+rand_id+'_minimize" onclick="minimizeTab('+rand_id+')" style="right : 68px; font-size : 10;"><b>━</b></button>'+
@@ -77,7 +77,7 @@ function AppendTab(url)
         content2.className = "tab_img";
         content2.id = rand_id+"_tab";
         content2.onclick = function(){minimizeTab(rand_id);z_order_tab(rand_id);};
-        content2.innerHTML = '<img src="c0c0nut.png" style="width : 100%; height : 100%">'
+        content2.innerHTML = '<img id="'+rand_id+'_tab_icon" src="http://www.google.com/s2/favicons?sz=64&domain='+new_url+'" style="width : 100%; height : 100%">'
         tab_bar.insertBefore(content2,tab_bar.children[tab_bar.children.length-1]);
 
         //Help me
@@ -142,6 +142,12 @@ function goToUrl(id)
     }
     webvw.src = url;
     input.value = url;
+    
+    //favicon hehe
+    const tab_icon = document.getElementById(id+"_tab_icon");
+    const icon = document.getElementById(id+"_icon");
+    tab_icon.src = "http://www.google.com/s2/favicons?domain="+url;
+    icon.src = "http://www.google.com/s2/favicons?domain="+url;
     //might have to integrate the selected search engine into this one to allow for searches directly from the url bar
 }
 
@@ -297,6 +303,9 @@ function duplicateTab(id)
 function updateURL(id)
 {
     const webcont = document.getElementById(id+"_webcontent");
+    const tab_icon = document.getElementById(id+"_tab_icon");
+    const icon = document.getElementById(id+"_icon");
+    //input
     if(webcont.src !== webcont.contentWindow.location.href)
     {
         webcont.src = webcont.contentWindow.location.href;
@@ -304,4 +313,8 @@ function updateURL(id)
     const url = webcont.src;
     const input = document.getElementById(id+"_input");
     input.value = url;
+
+    //favicon
+    tab_icon.src = "http://www.google.com/s2/favicons?domain="+url;
+    icon.src = "http://www.google.com/s2/favicons?domain="+url;
 }

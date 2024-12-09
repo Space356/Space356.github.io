@@ -1,0 +1,85 @@
+body
+{
+    margin : 0px;
+    background-color: black;
+    font-family:'Courier New';
+}
+.bgimage
+{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    aspect-ratio: 16/9;
+    opacity: 50%;
+}
+.searchbar
+{
+    background-color: #252525;
+    color : white;
+    margin : auto;
+    position : absolute;
+    top : 55%;
+    left : 50%;
+    transform: translate(-50%,-50%) scale(0.9,0.9);
+    width: 50%;
+    padding:16px;
+    border : 4px solid grey;
+    border-radius: 16px;
+    font-size: 18px;
+    transition : all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-delay: 0;
+    box-shadow: 8px 8px 16px #00000075;
+}
+.searchbar:hover
+{
+    color : black;
+    background-color: white;
+    transform: translate(-50%,-50%) scale(1,1);
+}
+.logo
+{
+    letter-spacing: 4px;
+    font-size: 100px;
+    color : white;
+    text-shadow: 0px 0px 8px white;
+    margin : auto;
+    position : absolute;
+    top : 35%;
+    left : 50%;
+    transform-origin:middle center;
+    transform: translate(-50%,-50%) scale(0.9,0.9);
+    transition : all 0.75s cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-delay: 0;
+    user-select: none;
+}
+.logo:hover
+{
+    letter-spacing: 18px;
+    transform: translate(-50%,-50%) scale(1.1,1.1) rotate(-5deg);
+}
+.corner_button
+{
+    position: absolute;
+    height : 32px;
+    width : 32px;
+    bottom : 4px;
+    color : var(--text-color);
+    background-color: color-mix(in srgb, var(--accent-color), #00000000 75%);
+    margin:0;
+    padding:2px;
+    border: 0;
+    border-radius: 8px;
+    justify-content: center;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+.corner_button:hover
+{
+    margin:auto;
+    background-color: #55555599;
+}
