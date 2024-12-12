@@ -1,17 +1,23 @@
 <html>
     <head>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-        <script type="module" src="index.js"></script>
+        <script src="index.js"></script>
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body onload="onload()">
+        <font family="Courier New">
         <img id="wallpaper" src="degbg.jpg" class="bgimage" draggable="false">
         <h1 class="logo" draggable="false">CocoSearch</h1>
         <input class="searchbar" id="input" placeholder="Search Here"></input>
         <input class="corner_button" id="wallpaper_input" type="file" onchange="change_background()" accept="image/*">^</input>
-        <div class="bookmark_menu">
-            <button onclick=""></button>
+        <div class="bookmark_menu" id="bookmark_menu">
+            <div class="book_button button_animation" onclick="open_bookmark_menu()"><center class="book_img">+</center></div>
         </div>
+        <center class="bookmark_input_menu hidden" id="bookmark_input_menu">
+            <input type="url" id="bookmark_input" class="bookmark_input button_animation" placeholder="URL"></input><br>
+            <input type="text" id="bookmark_name_input" class="bookmark_input button_animation" placeholder="Name"></input><br><br>
+            <button class="bookmark_input button_animation" onclick="submit_bookmark()">Add Bookmark</button>
+            <button class="bookmark_input button_animation" onclick="open_bookmark_menu()">Close</button>
+        </center>
     </body>
 </html>
 <!-- 
