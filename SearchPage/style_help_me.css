@@ -48,18 +48,31 @@ body
     text-shadow: 0px 0px 8px white;
     margin : auto;
     position : absolute;
-    top : 35%;
+    top : 50%;
     left : 50%;
     transform-origin:middle center;
     transform: translate(-50%,-50%) scale(0.9,0.9);
-    transition : all 0.75s cubic-bezier(0.075, 0.82, 0.165, 1);
-    transition-delay: 0;
-    user-select: none;
+    transition : all 0.75s linear;
+    /*transition : all 0.3s ease-out;*/
+    transition-delay : 0;
+    user-select : none;
+    pointer-events : none;
 }
-.logo:hover
+.logo_hover
 {
     letter-spacing: 18px;
     transform: translate(-50%,-50%) scale(1.1,1.1) rotate(-5deg);
+}
+.logo_container
+{
+    /*background-color: black;*/
+    width: 512px;
+    height : 90px;
+    position: absolute;
+    top : 35%;
+    left : 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 45px;
 }
 .corner_button
 {

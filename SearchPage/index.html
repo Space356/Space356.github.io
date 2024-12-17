@@ -7,7 +7,9 @@
     <body onload="onload()">
         <font family="Courier New"></font>
         <img id="wallpaper" src="degbg.jpg" class="bgimage" draggable="false">
-        <h1 class="logo" draggable="false">CocoSearch</h1>
+        <div draggable="false" class="logo_container" onmouseenter="logo_enter()" onmouseleave="logo_leave()">
+            <h1 class="logo" draggable="false" id="logo">CocoSearch</h1>
+        </div>
         <input class="searchbar" id="input" placeholder="Search Here"></input>
         <input class="corner_button" id="wallpaper_input" type="file" onchange="change_background()" accept="image/*">^</input>
         <div class="bookmark_menu" id="bookmark_menu">

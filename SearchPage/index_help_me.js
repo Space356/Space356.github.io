@@ -7,7 +7,7 @@ function onload()
     {
         if (event.key === 'Enter')
         {
-            window.location = "https://yep.com/web?q="+input.value+"&safeSearch=moderate";
+            window.location = "https://www.bing.com/search?q="+input.value;
             localStorage.setItem("searchVal",input.value);
         }
     });
@@ -97,4 +97,13 @@ function open_bookmark_menu()
     {
         bookmark_input_menu.classList.add("hidden");
     }
+}
+//logo jitter fix
+function logo_enter()
+{
+    document.getElementById("logo").classList.add("logo_hover");
+}
+function logo_leave()
+{
+    document.getElementById("logo").classList.remove("logo_hover");
 }
