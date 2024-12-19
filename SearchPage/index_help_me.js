@@ -96,7 +96,7 @@ function add_bookmark(_name,url)
     
     console.log("Attempting to add bookmark")
     const favicon = "http://www.google.com/s2/favicons?sz=64&domain="+url;
-    bookmark_menu.innerHTML = '<a href="'+url+'" class="book_button button_animation" id="'+rand_id+'"><h1 class="book_text">'+_name+'</h1><img src="'+favicon+'" class="book_img"></a>'+bookmark_menu.innerHTML;
+    bookmark_menu.innerHTML = '<a href="'+url+'" class="book_button button_animation" id="'+rand_id+'"><h1 class="book_text" style="pointer-events: none;">'+_name+'</h1><img src="'+favicon+'" class="book_img"></a>'+bookmark_menu.innerHTML;
 }
 
 function submit_bookmark()
