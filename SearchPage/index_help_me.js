@@ -1,14 +1,45 @@
 var bookmarks = "Hosting Site,https://space356.github.io";
+var search_engine = "https://www.bing.com/search?q=c0c0";
 
 function onload()
 {
+    const search_input = document.getElementById("search_input");
+    search_input.addEventListener('keydown', function(event)
+    {
+        if (event.key === 'Enter')
+        {
+            search_engine = search_input.value;
+            localStorage.setItem("searchEngine",search_engine);
+
+            const label = document.getElementById("search_label");
+            if(search_input.value != "")
+            {
+                search_engine = search_input.value;
+                label.innerHTML = "Current: "+search_engine;
+            }
+            else
+            {
+                search_engine = "https://www.bing.com/search?q=c0c0";
+                label.innerHTML = "Current: Bing(Default)";
+            }
+        }
+    });
+
+    const temp_search = localStorage.getItem("searchEngine");
+    if(temp_search && temp_search != "")
+    {
+        search_engine = temp_search;
+        document.getElementById("search_label").innerHTML = "Current: "+search_engine;
+    }
+    
     const input = document.getElementById("input");
     input.focus();
     input.addEventListener('keydown', function(event)
     {
         if (event.key === 'Enter')
         {
-            window.location = "https://www.bing.com/search?q="+input.value;
+            const query = search_engine.split("c0c0");
+            window.location = query[0]+input.value+query[1];
             localStorage.setItem("searchVal",input.value);
         }
     });
@@ -116,7 +147,6 @@ function logo_leave()
 
 async function change_background()
 {
-    const input = document.getElementById("wallpaper_input");
     const wallpaper = document.getElementById("wallpaper");
 
     const [fileHandle] = await window.showOpenFilePicker();
