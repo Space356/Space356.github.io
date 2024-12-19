@@ -52,7 +52,7 @@ body
     left : 50%;
     transform-origin:middle center;
     transform: translate(-50%,-50%) scale(0.9,0.9);
-    transition : all 0.75s linear;
+    transition : all 0.75s ease;
     /*transition : all 0.3s ease-out;*/
     transition-delay : 0;
     user-select : none;
@@ -61,7 +61,7 @@ body
 .logo_hover
 {
     letter-spacing: 18px;
-    transform: translate(-50%,-50%) scale(1.1,1.1) rotate(-5deg);
+    transform: translate(-50%,-50%) scale(1.1,1.1) rotate(-3deg);
 }
 .logo_container
 {
@@ -76,9 +76,11 @@ body
 }
 .corner_button
 {
+    font-size: 32px;
     position: absolute;
-    height : 32px;
-    width : 32px;
+    height : 48px;
+    width : 50px;
+    left : 4px;
     bottom : 4px;
     color : var(--text-color);
     background-color: color-mix(in srgb, var(--accent-color), #00000000 75%);
@@ -98,14 +100,16 @@ body
 }
 .bookmark_input
 {
+    max-width: 384px;
+    width : 100%;
     font-family: 'Courier New';
     margin : 0;
     position : relative;
     background-color: black;
+    color : white;
     border : 3px solid white;
     border-radius: 8px;
     padding : 8px;
-    color : white;
 }
 .bookmark_menu
 {
@@ -118,7 +122,7 @@ body
     transform: translateX(-50%);
     height : 53px;
     display: flex;
-    z-index: 100;
+    z-index: 50;
 }
 .book_button
 {
@@ -170,6 +174,9 @@ body
 }
 .bookmark_input_menu
 {
+    color : white;
+    width : 216px;
+    z-index: 100;
     position: absolute;
     align-items: center;
     top : 50%;
@@ -180,6 +187,7 @@ body
     border-radius: 16px;
     padding : 16px;
     box-shadow: 8px 8px 16px #00000075;
+    overflow: scroll;
 }
 .hidden
 {

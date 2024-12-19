@@ -3,6 +3,7 @@ var bookmarks = "Hosting Site,https://space356.github.io";
 function onload()
 {
     const input = document.getElementById("input");
+    input.focus();
     input.addEventListener('keydown', function(event)
     {
         if (event.key === 'Enter')
@@ -33,22 +34,27 @@ function onload()
     input.value = localStorage.getItem("searchVal");
 
 
-    /*const savedImage = localStorage.getItem('uploadedImage');
+    const savedImage = localStorage.getItem('uploadedImage');
 
     if (savedImage)
     {
         const img = document.getElementById('wallpaper');
-        img.src = savedImage;
-    }*/
-}
 
-function change_background()
-{
-    const input = document.getElementById("wallpaper_input");
-    const wallpaper = document.getElementById("wallpaper");
-    let file = URL.createObjectURL(input.files[0]);
-    localStorage.setItem('uploadedImage',file);
-    wallpaper.src = file;
+        // Convert Base64 string back to binary
+        const binaryString = atob(savedImage);
+        const len = binaryString.length;
+        const bytes = new Uint8Array(len);
+        for (let i = 0; i < len; i++)
+        {
+            bytes[i] = binaryString.charCodeAt(i);
+        }
+        // Create a Blob from the binary data
+        const blob = new Blob([bytes], { type: 'image/png' });
+        // Create an object URL for the Blob
+        const url = URL.createObjectURL(blob);
+
+        img.src = url;
+    }
 }
 
 function add_bookmark(_name,url)
@@ -106,4 +112,32 @@ function logo_enter()
 function logo_leave()
 {
     document.getElementById("logo").classList.remove("logo_hover");
+}
+
+async function change_background()
+{
+    const input = document.getElementById("wallpaper_input");
+    const wallpaper = document.getElementById("wallpaper");
+
+    const [fileHandle] = await window.showOpenFilePicker();
+    const file = await fileHandle.getFile();
+
+    const arrayBuffer = await file.arrayBuffer();
+    const base64String = btoa(String.fromCharCode(...new Uint8Array(arrayBuffer)));
+    localStorage.setItem('uploadedImage',base64String);
+
+    const uploaded_file = URL.createObjectURL(file);
+    wallpaper.src = uploaded_file;
+}
+function open_settings_menu()
+{
+    const settings_menu = document.getElementById("settings_menu");
+    if(settings_menu.classList.contains("hidden"))
+    {
+        settings_menu.classList.remove("hidden");
+    }
+    else
+    {
+        settings_menu.classList.add("hidden");
+    }
 }
