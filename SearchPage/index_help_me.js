@@ -1,8 +1,14 @@
 var bookmarks = "Hosting Site,https://space356.github.io";
+var bookmark_buttons = [];
 var search_engine = "https://www.bing.com/search?q=c0c0";
+var settings =
+{
+    prev_search : false,
+}
 
 function onload()
 {
+    setting_load();
     const search_input = document.getElementById("search_input");
     search_input.addEventListener('keydown', function(event)
     {
@@ -40,11 +46,17 @@ function onload()
         {
             const query = search_engine.split("c0c0");
             window.location = query[0]+input.value+query[1];
-            localStorage.setItem("searchVal",input.value);
+            if(settings.prev_search)
+            {
+                localStorage.setItem("searchVal",input.value);
+            }
         }
     });
     //console.log("http://textance.herokuapp.com/title/");
-    input.value = localStorage.getItem("searchVal");
+    if(settings.prev_search)
+    {
+        input.value = localStorage.getItem("searchVal");
+    }
 
     let temp_bookmarks = localStorage.getItem("saved_bookmarks");
     if(temp_bookmarks)
@@ -62,8 +74,10 @@ function onload()
         }
     }
     //console.log("http://textance.herokuapp.com/title/");
-    input.value = localStorage.getItem("searchVal");
-
+    if(settings.prev_search)
+    {
+        input.value = localStorage.getItem("searchVal");
+    }
 
     const savedImage = localStorage.getItem('uploadedImage');
 
@@ -96,7 +110,8 @@ function add_bookmark(_name,url)
     
     console.log("Attempting to add bookmark")
     const favicon = "http://www.google.com/s2/favicons?sz=64&domain="+url;
-    bookmark_menu.innerHTML = '<a href="'+url+'" class="book_button button_animation" id="'+rand_id+'"><h1 class="book_text" style="pointer-events: none;">'+_name+'</h1><img src="'+favicon+'" class="book_img"></a>'+bookmark_menu.innerHTML;
+    bookmark_menu.innerHTML = '<a href="'+url+'" class="book_button button_animation" id="'+rand_id+'"><h1 class="book_text" style="pointer-events: none;">'+_name+'</h1><img src="'+favicon+'" class="book_img"><button class="book_delete" onclick="event.preventDefault(); delete_bookmark('+rand_id+');">X</button></a>'+bookmark_menu.innerHTML;
+    bookmark_buttons.push(rand_id);
 }
 
 function submit_bookmark()
@@ -169,5 +184,64 @@ function open_settings_menu()
     else
     {
         settings_menu.classList.add("hidden");
+    }
+}
+function delete_bookmark(id)
+{
+    let index = Infinity;
+    for(let i=0;i<bookmark_buttons.length;i++)
+    {
+        if(bookmark_buttons[i] == id)
+        {
+            index = i;
+            break;
+        }
+    }
+    //splits the bookmarks, gets the string data at the wanted index, and "removes" it from the original string.
+    console.log("Trying to create splitter index "+String(index)+" from "+String(bookmarks.split("|")))
+    const splitter = bookmarks.split("|")[index];
+    bookmarks = bookmarks.replace(splitter,"");
+    console.log("Trying to delete: "+splitter);
+    if(bookmarks.includes(splitter))
+    {
+        console.log("Failed to remeove "+splitter)
+    }
+    else
+    {
+        console.log("Success in removing "+splitter);
+        console.log("bookmarks now = "+bookmarks);
+    }
+    //ensures there are no double breaks
+    bookmarks = bookmarks.replace("||","|");
+    if(bookmarks[0] == "|")
+    {
+        bookmarks = bookmarks.substring(1,bookmarks.length);
+    }
+    console.log("after replacing double breaks, bookmarks now = "+bookmarks);
+    bookmark_buttons.splice(index,1);
+    //if(bookmark_buttons.contains(rand_id))
+    //{
+        //console.log("Failed to remove button id from list.")
+    //}
+    if(index != Infinity)
+    {
+        localStorage.setItem("saved_bookmarks",bookmarks);
+        //deletes the button
+        document.getElementById(id).remove();
+    }
+}
+
+function setting_reset()
+{
+    settings.prev_search = document.getElementById("setting_presearch").checked;
+    localStorage.setItem("settings",JSON.stringify(settings));
+}
+function setting_load()
+{
+    const temp_settings = localStorage.getItem("settings");
+    if(temp_settings)
+    {
+        settings = JSON.parse(temp_settings);
+        document.getElementById("setting_presearch").checked = settings.prev_search;
     }
 }
