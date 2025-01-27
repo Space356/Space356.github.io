@@ -111,6 +111,27 @@ body
     border-radius: 8px;
     padding : 8px;
 }
+.checkbox input
+{
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+    content:"on";
+}
+.checkmark::after
+{
+    content: "off";
+}
+.checkbox input:checked ~ .button_animation
+{
+    background-color: #2196F3;
+}
+.checkbox input:checked ~ .checkmark::after
+{
+    content: "on";
+}
 .bookmark_menu
 {
     position : absolute;
@@ -180,6 +201,9 @@ body
 {
     color : white;
     width : 216px;
+    height : 128px;
+    max-width: 100%;
+    max-height: 100%;
     z-index: 100;
     position: absolute;
     align-items: center;
@@ -191,8 +215,32 @@ body
     border-radius: 16px;
     padding : 16px;
     box-shadow: 8px 8px 16px #00000075;
-    overflow: scroll;
+    overflow-y: auto;
     overflow-wrap: anywhere;
+    user-select: none;
+}
+::-webkit-scrollbar
+{
+    width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track
+{
+    background: #00000000;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb
+{
+    background: grey;
+    border-radius: 8px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover
+{
+    background: #555;
 }
 .hidden
 {

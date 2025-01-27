@@ -21,7 +21,7 @@
             <button class="bookmark_input button_animation" style="width : 60%;" onclick="submit_bookmark()">Add Bookmark</button>
         </center>
         <button class="corner_button" onclick="open_settings_menu()"><img src="SettingsIcon.png" style="position: absolute; width:80%; top: 5px;"></button>
-        <center class="bookmark_input_menu hidden" style="width :50%; height : 75%;" id="settings_menu">
+        <center class="bookmark_input_menu hidden" style="width :600px; height : 512px;" id="settings_menu" >
             <b style="font-size: 30px;">Search Engine:</b>
             <div id="search_label" style="font-size: 12;">Current: Bing(Default)</div>
             <br>
@@ -32,10 +32,35 @@
             <button class="bookmark_input button_animation" id="wallpaper_input" onclick="change_background()">Change Wallpaper</button>
             <br>
             <br>
+            <b style="font-size: 30px;">Widgets: (Don't work yet)</b>
+            <br>
+            <br>
+            <label for="leftbar_select">Left Bar:</label>
+            <select class="bookmark_input button_animation" style="width:35%;" id="leftbar_select">
+                <option value="">None</option>
+                <option value="time">Time & Weather</option>
+                <option value="notebook">Notebook</option>
+                <option value="iframe">iFrame (Display Site)</option>
+                <option value="todo">To-Do List</option>
+            </select>
+            <br>
+            <br>
+            <label for="rightbar_select">Right Bar:</label>
+            <select class="bookmark_input button_animation" style="width:35%;" id="rightbar_select">
+                <option value="">None</option>
+                <option value="time">Time & Weather</option>
+                <option value="notebook">Notebook</option>
+                <option value="iframe">iFrame (Display Site)</option>
+                <option value="todo">To-Do List</option>
+            </select>
+            <br>
+            <br>
             <b style="font-size: 30px;">Various:</b>
             <br>
-            <input type="checkbox" onchange="setting_reset()" id="setting_presearch">Restore Previous Search</input>
-            <br>
+            <label class="checkbox">Restore Previous Search: 
+                <input type="checkbox" onchange="setting_reset()" id="setting_presearch"></input>
+                <span class="bookmark_input checkmark button_animation"></span>
+            </label>
             <br>
             <br>
             <br>
