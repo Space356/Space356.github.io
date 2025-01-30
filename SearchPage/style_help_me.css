@@ -144,7 +144,7 @@ body
     padding: 8px;
     border-radius: 16px;
     left: 50%;
-    top: 65%;
+    top: 68%;
     transform: translateX(-50%);
     /*height : 53px;*/
     display:flex;
@@ -284,4 +284,5 @@ body
     top : 46.5%;
     transform : translateY(-50%);
     user-select: none;
+    padding-top: 16px;
 }
