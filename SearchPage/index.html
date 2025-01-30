@@ -1,10 +1,13 @@
 <html>
     <head>
+        <script src="time.js"></script>
+        <script src="widgets.js"></script>
         <script src="index_help_me.js"></script>
+        <link rel="stylesheet" type="text/css" href="widgets.css">
         <link rel="stylesheet" type="text/css" href="style_help_me.css">
         <title>New Tab</title>
     </head>
-    <body onload="onload()">
+    <body onload="onload()" draggable="false">
         <font family="Courier New"></font>
         <img id="wallpaper" src="degbg.jpg" class="bgimage" draggable="false">
         <div draggable="false" class="logo_container" onmouseenter="logo_enter()" onmouseleave="logo_leave()">
@@ -14,6 +17,8 @@
         <div class="bookmark_menu" id="bookmark_menu">
             <div class="book_button button_animation" onclick="open_bookmark_menu()"><center class="book_img">+</center></div>
         </div>
+        <div id="bar_left" class="widget" style="left : 3.75%;"></div>
+        <div id="bar_right" class="widget" style="right : 3.75%;"></div>
         <center class="bookmark_input_menu hidden" id="bookmark_input_menu">
             <input type="url" id="bookmark_input" class="bookmark_input button_animation" placeholder="URL"></input><br>
             <input type="text" id="bookmark_name_input" class="bookmark_input button_animation" placeholder="Name"></input><br><br>
@@ -32,26 +37,26 @@
             <button class="bookmark_input button_animation" id="wallpaper_input" onclick="change_background()">Change Wallpaper</button>
             <br>
             <br>
-            <b style="font-size: 30px;">Widgets: (Don't work yet)</b>
+            <b style="font-size: 30px;">Widgets: (Most don't work yet)</b>
             <br>
             <br>
             <label for="leftbar_select">Left Bar:</label>
-            <select class="bookmark_input button_animation" style="width:35%;" id="leftbar_select">
-                <option value="">None</option>
-                <option value="time">Time & Weather</option>
-                <option value="notebook">Notebook</option>
-                <option value="iframe">iFrame (Display Site)</option>
-                <option value="todo">To-Do List</option>
+            <select class="bookmark_input button_animation" style="width:35%;" id="leftbar_select" onchange="set_widget('left')">
+                <option value="0">None</option>
+                <option value="1">Time & Weather</option>
+                <option value="2">Notebook</option>
+                <option value="3">iFrame (Display Site)</option>
+                <option value="4">To-Do List</option>
             </select>
             <br>
             <br>
             <label for="rightbar_select">Right Bar:</label>
-            <select class="bookmark_input button_animation" style="width:35%;" id="rightbar_select">
-                <option value="">None</option>
-                <option value="time">Time & Weather</option>
-                <option value="notebook">Notebook</option>
-                <option value="iframe">iFrame (Display Site)</option>
-                <option value="todo">To-Do List</option>
+            <select class="bookmark_input button_animation" style="width:35%;" id="rightbar_select" onchange="set_widget('right')">
+                <option value="0">None</option>
+                <option value="1">Time & Weather</option>
+                <option value="2">Notebook</option>
+                <option value="3">iFrame (Display Site)</option>
+                <option value="4">To-Do List</option>
             </select>
             <br>
             <br>

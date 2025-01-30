@@ -1,10 +1,12 @@
 var bookmarks = "Hosting Site,https://space356.github.io";
 var bookmark_buttons = [];
+var bookmark_z_index = 0;
 var search_engine = "https://www.bing.com/search?q=c0c0";
 var settings =
 {
     prev_search : false,
 }
+var logo_rotate = true;
 
 function onload()
 {
@@ -102,7 +104,7 @@ function onload()
     }
 }
 
-function add_bookmark(_name,url)
+function add_bookmark(_name,url,)
 {
     const bookmark_menu = document.getElementById("bookmark_menu");
 
@@ -110,8 +112,9 @@ function add_bookmark(_name,url)
     
     console.log("Attempting to add bookmark")
     const favicon = "http://www.google.com/s2/favicons?sz=64&domain="+url;
-    bookmark_menu.innerHTML = '<a href="'+url+'" class="book_button button_animation" id="'+rand_id+'"><h1 class="book_text" style="pointer-events: none;">'+_name+'</h1><img src="'+favicon+'" class="book_img"><button class="book_delete" onclick="event.preventDefault(); delete_bookmark('+rand_id+');">X</button></a>'+bookmark_menu.innerHTML;
+    bookmark_menu.innerHTML = '<a href="'+url+'" class="book_button button_animation" id="'+rand_id+'" style="z-index : '+String(bookmark_z_index)+';"><h1 class="book_text" style="pointer-events: none;">'+_name+'</h1><img src="'+favicon+'" class="book_img"><button class="book_delete" onclick="event.preventDefault(); delete_bookmark('+rand_id+');">X</button></a>'+bookmark_menu.innerHTML;
     bookmark_buttons.push(rand_id);
+    bookmark_z_index ++;
 }
 
 function submit_bookmark()
@@ -153,7 +156,17 @@ function open_bookmark_menu()
 //logo jitter fix
 function logo_enter()
 {
-    document.getElementById("logo").classList.add("logo_hover");
+    const logo = document.getElementById("logo");
+    if(logo_rotate)
+    {
+        logo.style.setProperty("--logo-rotate","3deg");
+    }
+    else
+    {
+        logo.style.setProperty("--logo-rotate","-3deg");
+    }
+    logo.classList.add("logo_hover");
+    logo_rotate = !logo_rotate;
 }
 function logo_leave()
 {
@@ -244,4 +257,6 @@ function setting_load()
         settings = JSON.parse(temp_settings);
         document.getElementById("setting_presearch").checked = settings.prev_search;
     }
+
+    load_widgets();
 }
