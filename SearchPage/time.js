@@ -26,3 +26,8 @@ const interval = setInterval(function()
     }
     console.log("time");
 },1000);
+
+function load_weather()
+{
+    
+}

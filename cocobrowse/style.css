@@ -256,11 +256,12 @@ body
 {
     position: absolute;
     background-color: var(--text-color);
-    border: solid 8px var(--text-color);
+    border: dotted 8px rgba(10,10,10,10);
     top : 0px;
-    height : 80%;
-    width : 1px;
-    opacity : 0;
+    height : 100%;
+    width : 3px;
+    cursor: e-resize;
+    transform: translateX(-50%);
 }
 .docked
 {

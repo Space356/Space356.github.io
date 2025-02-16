@@ -1,18 +1,28 @@
 widget_array =
 [
     '',
-    '<h1 class="time_text" id="time"></h1><br><h2 class="time_text font_smaller" id="datehtml"></h2>',
+    '<h1 class="time_text" id="time"></h1><br><h2 class="time_text font_smaller" id="datehtml"></h2><div style="position: absolute; bottom : 0px;"></div>',
     'notebook',
     'iframe',
     'to-do list'
 ];
+option_array =
+[
+    '',
+    'These are otions for time and weather.',
+    'These are options for the notebook.',
+    'These are options for the iframe.',
+    'These are options for the to-do list.'
+]
 
 function set_widget(side)
 {
     const select = document.getElementById(side+"bar_select");
     const bar = document.getElementById("bar_"+side);
+    const options = document.getElementById(side+"_options");
 
     bar.innerHTML = widget_array[select.value];
+    options.innerHTML = option_array[select.value];
     localStorage.setItem(side+"_widget",select.value);
     if(select.value != 0)
     {
