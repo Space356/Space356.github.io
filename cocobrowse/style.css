@@ -8,6 +8,8 @@ body
     --leftagain : 0px;
     --accent-color : black;
     --text-color : white;
+    --accent-rgb : 0,0,0;
+    --text-rgb : 255, 255, 255;
 }
 .workspace
 {
@@ -255,13 +257,19 @@ body
 .split_bar
 {
     position: absolute;
-    background-color: var(--text-color);
-    border: dotted 8px rgba(10,10,10,10);
+    background-color : var(--text-color);
+    outline : solid 6px rgba(var(--text-rgb),0.5);
     top : 0px;
     height : 100%;
-    width : 3px;
+    width : 5px;
     cursor: e-resize;
-    transform: translateX(-50%);
+    transform : translateX(-50%);
+    z-index : 99;
+    opacity : 0;
+}
+.split_bar:hover
+{
+    opacity : 1;
 }
 .docked
 {

@@ -3,8 +3,8 @@ var tab_array = [];
 var maximized = false;
 var stored_top = "0px";
 var stored_left = "0px";
-var viewtype = "webview";
-var search_engine = "https://www.google.com";
+var viewtype = "iframe"; //webview
+var search_engine = "https://space356.github.io/SearchPage";
 
 function AppendTab(url)
 {
@@ -107,26 +107,32 @@ function disable_mouse(id)
 {
     //disables the functionalities of the mouse within webviews to ensure a smooth drag and drop or rescale
     const webs = document.querySelectorAll(".webcontent");
-    const windo = document.getElementById(id);
-    z_order_tab(id);
     webs.forEach((entry) =>
     {
         entry.classList.add("click_disable");
     })
     console.log("Calling mouse diable.");
-    windo.style.transition = "none";
+    if(id != 0)
+    {
+        const windo = document.getElementById(id);
+        z_order_tab(id);
+        windo.style.transition = "none";
+    }
 }
 function enable_mouse(id)
 {
     //re-enables the mouse after the previous function
     const webs = document.querySelectorAll(".webcontent");
-    const windo = document.getElementById(id);
     webs.forEach((entry) =>
     {
         entry.classList.remove("click_disable");
     })
     console.log("Calling mouse enable.");
-    windo.style.transition = "all 0.3s ease";//was 0.3
+    if(id != 0)
+    {
+        const windo = document.getElementById(id);
+        windo.style.transition = "all 0.3s ease";//was 0.3
+    }
 }
 
 function goToUrl(id)
@@ -165,9 +171,30 @@ function goForwards(id)
 
 function closeTab(id)
 {
-    document.getElementById(id).remove();
+    const windo = document.getElementById(id);
     document.getElementById(id+"_tab").remove();
     tab_array.splice(tab_array.indexOf(id),1);
+
+    if(split_window_left == windo)
+    {
+        split_window_left = 0;
+    }
+    if(split_window_right == windo)
+    {
+        split_window_right = 0;
+    }
+    if((split_window_left != 0 || split_window_right != 0) && !maximized)
+    {
+        split_bar.style.display = "flex";
+        console.log("Split Bar Enabled");
+    }
+    else
+    {
+        split_bar.style.display = "none";
+        console.log("Split Bar Disabled");
+    }
+
+    windo.remove();
 }
 
 function minimizeTab(id)
@@ -271,6 +298,16 @@ function maximizeTab(id)
         windo.style.top = "0px";
         windo.style.left = "0px";
         maximized = true;
+    }
+    if((split_window_left != 0 || split_window_right != 0) && !maximized)
+    {
+        split_bar.style.display = "flex";
+        console.log("Split Bar Enabled");
+    }
+    else
+    {
+        split_bar.style.display = "none";
+        console.log("Split Bar Disabled");
     }
 }
 
