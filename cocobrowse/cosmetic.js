@@ -13,13 +13,13 @@ function apply_cosmetic()
     root.style.setProperty('--accent-rgb', rgb_convert(accent_select.value));
     root.style.setProperty('--text-rgb', rgb_convert(text_select.value));
 
-    if(base64String != "")
-    {
+    //if(base64String != "")
+    //{
         const wallpaper_preview = document.getElementById("wallpaper_preview");
         const wallpaper = document.getElementById("wallpaper");
         localStorage.setItem('uploadedImage',base64String);
         wallpaper.src = wallpaper_preview.src;
-    }
+    //}
 }
 function rgb_convert(col)
 {
