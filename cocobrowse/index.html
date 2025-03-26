@@ -5,6 +5,7 @@
         <script src="funnyfunctions.js"></script>
         <script src="draganddrop.js"></script>
         <script src="windows.js"></script>
+        <script src="redirectmanager.js"></script>
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
@@ -22,8 +23,8 @@
             <div class="menu_section">
                 <b>Select an accent color: </b><input type="color" id="accent_select"></input><br>
                 <b>Select a text color: </b><input type="color" id="text_select"></input><br>
-                <input type="file" id="wallpaper_select">Select a wallpaper</input>
-                <img src="MMBG.png" style="width:50%;">
+                <input type="file" id="wallpaper_select" onclick="change_background()">Select a wallpaper</input>
+                <img src="MMBG.png" id="wallpaper_preview" style="width:50%;">
             </div>
             <br>
             <button class="menu_button" onclick="apply_cosmetic()">Apply Changes</button>

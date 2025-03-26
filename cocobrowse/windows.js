@@ -6,6 +6,8 @@ var stored_left = "0px";
 var viewtype = "iframe"; //webview
 var search_engine = "https://space356.github.io/SearchPage";
 
+
+
 function AppendTab(url)
 {
     if(tab_array.length < 25)
@@ -80,6 +82,8 @@ function AppendTab(url)
         content2.innerHTML = '<img id="'+rand_id+'_tab_icon" src="http://www.google.com/s2/favicons?sz=64&domain='+new_url+'" style="width : 100%; height : 100%">'
         tab_bar.insertBefore(content2,tab_bar.children[tab_bar.children.length-1]);
 
+        //redirect management
+        document.getElementById("")
         //Help me
         console.log("Help me");
         return rand_id;
@@ -354,4 +358,6 @@ function updateURL(id)
     //favicon
     tab_icon.src = "http://www.google.com/s2/favicons?domain="+url;
     icon.src = "http://www.google.com/s2/favicons?domain="+url;
+
+    interceptLinks(webcont);
 }

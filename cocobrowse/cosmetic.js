@@ -1,10 +1,5 @@
-function change_background()
-{
-    const input = document.getElementById("wallpaper_input");
-    const wallpaper = document.getElementById("wallpaper");
-    let file = URL.createObjectURL(input.files[0]);
-    wallpaper.src = file.name;
-}
+var base64String = "";
+
 function apply_cosmetic()
 {
     // Get the root element
@@ -18,7 +13,13 @@ function apply_cosmetic()
     root.style.setProperty('--accent-rgb', rgb_convert(accent_select.value));
     root.style.setProperty('--text-rgb', rgb_convert(text_select.value));
 
-    change_background();
+    if(base64String != "")
+    {
+        const wallpaper_preview = document.getElementById("wallpaper_preview");
+        const wallpaper = document.getElementById("wallpaper");
+        localStorage.setItem('uploadedImage',base64String);
+        wallpaper.src = wallpaper_preview.src;
+    }
 }
 function rgb_convert(col)
 {
@@ -26,4 +27,16 @@ function rgb_convert(col)
     const g = parseInt(col.slice(3, 5), 16);
     const b = parseInt(col.slice(5, 7), 16);
     return String(r)+", "+String(g)+", "+String(b);
+}
+
+async function change_background()
+{
+    const [fileHandle] = await window.showOpenFilePicker();
+    const file = await fileHandle.getFile();
+
+    const arrayBuffer = await file.arrayBuffer();
+    base64String = btoa(String.fromCharCode(...new Uint8Array(arrayBuffer)));
+    const uploaded_file = URL.createObjectURL(file);
+
+    document.getElementById("wallpaper_preview").src = uploaded_file;
 }
