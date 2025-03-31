@@ -1,7 +1,8 @@
+weather_string = '<iframe src="weather_widget.html" scroll></iframe>';
 widget_array =
 [
     '',
-    '<h1 class="time_text" id="time"></h1><br><h2 class="time_text font_smaller" id="datehtml"></h2><div style="position: absolute; bottom : 0px;"></div>',
+    '<h1 class="time_text" name="time"></h1><br><h2 class="time_text font_smaller" name="datehtml"></h2><div style="position: absolute; bottom : 0px; width:100%; height:50%;">'+weather_string+'</div>',
     'notebook',
     'iframe',
     'to-do list'
@@ -41,6 +42,8 @@ function set_widget(side)
 }
 function load_widgets()
 {
+    //weather_string = document.getElementById("weatherwidget").innerHTML;
+
     const left_val = localStorage.getItem("left_widget");
     if(left_val != null)
     {

@@ -34,7 +34,9 @@ async function change_background()
     const [fileHandle] = await window.showOpenFilePicker();
     const file = await fileHandle.getFile();
 
+    console.log(file);
     const arrayBuffer = await file.arrayBuffer();
+    console.log(arrayBuffer);
     base64String = btoa(String.fromCharCode(...new Uint8Array(arrayBuffer)));
     const uploaded_file = URL.createObjectURL(file);
 

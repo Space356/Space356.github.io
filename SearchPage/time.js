@@ -17,13 +17,19 @@ const interval = setInterval(function()
         am = "pm";
     }
 
-    const time = document.getElementById("time");
-    if(time != null)
+    const times = document.getElementsByName("time");
+    times.forEach(time => 
     {
-        time.innerHTML = String(hours)+":"+String(100+minutes).substring(1,3)+" "+am;
-        const datehtml = document.getElementById("datehtml");
-        datehtml.innerHTML = day+" "+month+" "+date+", "+year;
-    }
+        if(time != null)
+        {
+            time.innerHTML = String(hours)+":"+String(100+minutes).substring(1,3)+" "+am;
+            const datehtmls = document.getElementsByName("datehtml");
+            datehtmls.forEach(datehtml => 
+            {
+                datehtml.innerHTML = day+" "+month+" "+date+", "+year;
+            });
+        }
+    });
     console.log("time");
 },1000);
 
