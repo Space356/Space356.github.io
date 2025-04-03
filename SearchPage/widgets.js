@@ -1,8 +1,8 @@
-weather_string = '<iframe src="weather_widget.html" scroll></iframe>';
+weather_string = '<iframe src="/weather_widget" scroll></iframe>';
 widget_array =
 [
     '',
-    '<h1 class="time_text" name="time"></h1><br><h2 class="time_text font_smaller" name="datehtml"></h2><div style="position: absolute; bottom : 0px; width:100%; height:50%;">'+weather_string+'</div>',
+    '<h1 class="time_text anims" name="time"></h1><br><h2 class="time_text font_smaller anims" name="datehtml"></h2><div style="position: absolute; bottom : 0px; width:100%; height:50%;">'+weather_string+'</div>',
     'notebook',
     'iframe',
     'to-do list'

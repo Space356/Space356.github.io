@@ -14,7 +14,10 @@ const interval = setInterval(function()
     if(hours > 12)
     {
         hours -= 12;
-        am = "pm";
+    }
+    if(hours >= 12)
+    {
+        am = "pm"
     }
 
     const times = document.getElementsByName("time");
@@ -32,8 +35,3 @@ const interval = setInterval(function()
     });
     console.log("time");
 },1000);
-
-function load_weather()
-{
-    
-}
