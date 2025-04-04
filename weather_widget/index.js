@@ -41,8 +41,8 @@ async function get_weather(position)
         condition.innerHTML = data.current.condition.text+'<img class="condition_image" src="'+data.current.condition.icon+'"><img/>';
 
         ws.innerHTML = String(data.current.wind_mph)+"mph";
-        rr.innerHTML = String(data.forecast.forecastday[0].day.daily_chance_of_rain)+"%";
-        aq.innerHTML = air_texts[data.forecast.forecastday[0].day.air_quality["us-epa-index"]-1];
+        rr.innerHTML = String(data.forecast.forecastday[0].hour[0].chance_of_rain)+"%";
+        aq.innerHTML = air_texts[data.forecast.forecastday[0].hour[0].air_quality["us-epa-index"]-1];
       })
 }
 function do_stuff()
