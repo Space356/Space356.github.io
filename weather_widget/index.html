@@ -17,6 +17,23 @@
                 place-items: center;
                 margin : auto;
             }
+            .container2
+            {
+                margin : auto;
+                position:absolute;
+                bottom : 0%;
+                width : 100%;
+            }
+            .justify
+            {
+                display: flex;
+                justify-content: space-between;
+            }
+            pre
+            {
+                display: grid;
+                place-items: center;
+            }
             .city_text
             {
                 font-size: 24px;
@@ -28,6 +45,8 @@
             .condition_text
             {
                 font-size: 30px;
+                position : relative;
+                top : -15px;
             }
             .condition_image
             {
@@ -52,6 +71,13 @@
             <div class="city_text anims" id="city"></div>
             <b class="temp_text anims" id="temperature"></b>
             <b class="condition_text anims" id="condition"></b>
+        </div>
+        <div class="container2">
+            <div class="justify">
+                <pre>Risk of Rain<br><b id="rr"></b></pre>
+                <pre>Wind Speed<br><b id="ws"></b></pre>
+                <pre>Air Quality<br><b id="aq"></b></pre>
+            </div>
         </div>
     </body>
 </html>

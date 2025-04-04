@@ -6,19 +6,26 @@ async function get_weather(position)
     const city = document.getElementById("city");
     const condition = document.getElementById("condition");
 
+    const rr = document.getElementById("rr");
+    const ws = document.getElementById("ws");
+    const aq = document.getElementById("aq");
+
     const lon = position.coords.latitude;
     const lat = position.coords.longitude;
 
     console.log(lon);
     console.log(lat);
 
-    const fetch_string = "https://api.weatherapi.com/v1/current.json?key=5a2b9f1d979849b18a1121304250204&q="+String(lon)+","+String(lat);
+    const fetch_string = "https://api.weatherapi.com/v1/forecast.json?key=5a2b9f1d979849b18a1121304250204&aqi=yes&q="+String(lon)+","+String(lat);
 
+    const air_texts = ["Good","Meh","A Little Bad","Bad","Really Bad","Don't Go Outside"];
     console.log(fetch_string);
 
-    fetch(fetch_string, {
+    //current fetching
+    fetch(fetch_string,
+    {
       mode: "cors"
-  })
+    })
     .then(response => response.json())
     .then(data => {
         // Process and display the weather data
@@ -32,11 +39,15 @@ async function get_weather(position)
         city.innerHTML = data.location.name;
 
         condition.innerHTML = data.current.condition.text+'<img class="condition_image" src="'+data.current.condition.icon+'"><img/>';
+
+        ws.innerHTML = String(data.current.wind_mph)+"mph";
+        rr.innerHTML = String(data.forecast.forecastday[0].day.daily_chance_of_rain)+"%";
+        aq.innerHTML = air_texts[data.forecast.forecastday[0].day.air_quality["us-epa-index"]-1];
       })
 }
 function do_stuff()
 {
-  setInterval(function()
+  eek = function()
   {
     if (navigator.geolocation)
     {
@@ -46,6 +57,7 @@ function do_stuff()
     {
       console.log("Geolocation is not supported by your browser.");
     }
-    inter = 900000;
-  },inter);
+  }
+  eek();
+  setInterval(eek,900000);
 }
