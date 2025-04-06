@@ -11,13 +11,14 @@ const interval = setInterval(function()
     const minutes = now.getMinutes();
 
     let am = "am";
-    if(hours > 12)
-    {
-        hours -= 12;
-    }
     if(hours >= 12)
     {
-        am = "pm"
+        am = "pm";
+        hours -= 12;
+    }
+    if(hours == 0)
+    {
+        hours += 12;
     }
 
     const times = document.getElementsByName("time");
