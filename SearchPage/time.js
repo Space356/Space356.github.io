@@ -30,7 +30,7 @@ const interval = setInterval(function()
             const datehtmls = document.getElementsByName("datehtml");
             datehtmls.forEach(datehtml => 
             {
-                datehtml.innerHTML = day+" "+month+" "+date+", "+year;
+                datehtml.innerHTML = day+"<br>"+month+" "+date+", "+year;
             });
         }
     });
