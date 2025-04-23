@@ -10,6 +10,9 @@ async function get_weather(position)
     const ws = document.getElementById("ws");
     const aq = document.getElementById("aq");
 
+    const now = new Date();
+    let hours = now.getHours();
+
     const lon = position.coords.latitude;
     const lat = position.coords.longitude;
 
@@ -41,8 +44,8 @@ async function get_weather(position)
         condition.innerHTML = data.current.condition.text+'<img class="condition_image" src="'+data.current.condition.icon+'"><img/>';
 
         ws.innerHTML = String(data.current.wind_mph)+"mph";
-        rr.innerHTML = String(data.forecast.forecastday[0].hour[0].chance_of_rain)+"%";
-        aq.innerHTML = air_texts[data.forecast.forecastday[0].hour[0].air_quality["us-epa-index"]-1];
+        rr.innerHTML = String(data.forecast.forecastday[0].hour[hours].chance_of_rain)+"%";
+        aq.innerHTML = air_texts[data.current.air_quality["us-epa-index"]-1];
       })
 }
 function do_stuff()
