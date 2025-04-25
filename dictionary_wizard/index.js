@@ -4,6 +4,7 @@ function generate()
 {
     result = "";
     curr_num = 0;
+    result += "<ol>";
     const words = document.getElementById("inpt").value.split(",");
     words.forEach(element => {
         const fetch_string = "https://api.dictionaryapi.dev/api/v2/entries/en/"+element;
@@ -15,15 +16,15 @@ function generate()
             .then(data => {
                 console.log(data[0]);
                 curr_num ++;
-                result += String(curr_num)+". "+data[0].word+": <br>";
+                result += "<li>"+data[0].word+": <ul>";
                 for (let i=0;i<data[0].meanings.length;i++)
                 {
                     for (let j=0;j<data[0].meanings[i].definitions.length;j++)
                     {
-                        result += " * "+data[0].meanings[i].partOfSpeech+" - "+data[0].meanings[i].definitions[j].definition+"<br>     ";
+                        result += "<li>"+data[0].meanings[i].partOfSpeech+" - "+data[0].meanings[i].definitions[j].definition+"</li>     ";
                     }
                 }
-                result += "<br>";
+                result += "</ul></li>";
             });
     });
 }
@@ -31,5 +32,7 @@ function generate()
 //document.getElementById("result").innerHTML = result;
 function disp()
 {
+    result += "</ol>";
     document.getElementById("result").innerHTML = result;
+    result = "Sorry, I need to figure some stuff out.";
 }
