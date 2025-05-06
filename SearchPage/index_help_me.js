@@ -1,6 +1,6 @@
 var bookmarks = "Hosting Site,https://space356.github.io";
 var bookmark_buttons = [];
-var bookmark_z_index = 0;
+//var bookmark_z_index = 0;
 var search_engine = "https://www.bing.com/search?q=c0c0";
 var settings =
 {
@@ -112,9 +112,11 @@ function add_bookmark(_name,url,)
     
     console.log("Attempting to add bookmark")
     const favicon = "http://www.google.com/s2/favicons?sz=64&domain="+url;
-    bookmark_menu.innerHTML = '<a href="'+url+'" class="book_button button_animation" id="'+rand_id+'" style="z-index : '+String(bookmark_z_index)+';"><h1 class="book_text" style="pointer-events: none;">'+_name+'</h1><img src="'+favicon+'" class="book_img"><button class="book_delete" onclick="event.preventDefault(); delete_bookmark('+rand_id+');">X</button></a>'+bookmark_menu.innerHTML;
+
+    // style="z-index : '+String(bookmark_z_index)+';"
+    bookmark_menu.innerHTML = '<a href="'+url+'" class="book_button button_animation" id="'+rand_id+'"><h1 class="book_text" style="pointer-events: none;">'+_name+'</h1><img src="'+favicon+'" class="book_img"><button class="book_delete" onclick="event.preventDefault(); delete_bookmark('+rand_id+');">X</button></a>'+bookmark_menu.innerHTML;
     bookmark_buttons.push(rand_id);
-    bookmark_z_index ++;
+    //bookmark_z_index ++;
 }
 
 function submit_bookmark()
@@ -179,9 +181,19 @@ async function change_background()
 
     const [fileHandle] = await window.showOpenFilePicker();
     const file = await fileHandle.getFile();
-
+    console.log(file);
+    
     const arrayBuffer = await file.arrayBuffer();
-    const base64String = btoa(String.fromCharCode(...new Uint8Array(arrayBuffer)));
+    console.log(arrayBuffer);
+    const base64String = btoa(new Uint8Array(arrayBuffer).reduce((data, byte) => data + String.fromCharCode(byte), ''));
+    
+    console.log(base64String);
+    //storeImage("wallpaper",base64String);
+    //getImage("wallpaper", function(base64)
+    //{
+        //wallpaper.src = base64;
+    //});
+    
     localStorage.setItem('uploadedImage',base64String);
 
     const uploaded_file = URL.createObjectURL(file);
