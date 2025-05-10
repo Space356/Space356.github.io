@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Loading</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+        <script src="note.js"></script>
+    </head>
+    <body onload="on_note_load()">
+        <div class="header"><button class="button_anims new_notebook">🡐</button><h1 class="title">Placeholder Notebook Name</h1></div>
+        <div id="scroll_area" class="scroll_area">
+            <div id="n_0000" class="button_anims note" role="textbox"><div class="handle" contenteditable="false">≡</div><div onclick="delete_note('n_0000')" class="delete" contenteditable="false">x</div><div class="fill" id="tb_0000" contenteditable="true">New Note</div></div>
+            <div id="b_0000" class="new_note">
+                <button 
+                class="new_note_plus" 
+                id="b_0000_plus"
+                onmouseenter="plus_hover_enter('b_0000')" 
+                onmouseleave="plus_hover_leave('b_0000')"
+                onclick="open_add_menu('b_0000')">+</button>
+                <button onclick="append_note('b_0000')" tabindex="-1" id="b_0000_nn" class="button_anims new_note_expand_button" style="top: 8px; pointer-events: none;">New Note</button>
+                <button onclick="append_section('b_0000')" tabindex="-1" id="b_0000_ns" class="button_anims new_note_expand_button" style="top: 48px; pointer-events: none;">New Section</button>
+            </div>
+        </div>
+        </div>
+    </body>
+</html>
