@@ -58,6 +58,8 @@ function append_note(id)
     console.log("Made note with id "+note.id);
 
     open_add_menu(id); //closes the button
+
+    return(note);
 }
 function append_section(id)
 {
@@ -124,6 +126,7 @@ function on_note_load()
             }
         }
     });
+    load_notebook();
 }
 
 function delete_note(id)
