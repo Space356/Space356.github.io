@@ -3,31 +3,14 @@
     <head>
         <title>Notebook</title>
         <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+        <script src="note.js"></script>
+        <script src ="savedata.js"></script>
     </head>
-    <body>
-        <div class="header"><button class="new_notebook">+</button></div>
-        <div class="scroll_area">
-            <a class="note_button">Example Note</a>
-            <a class="note_button">Example Note</a>
-            <a class="note_button">Example Note</a>
-            <a class="note_button">Example Note</a>
-            <a class="note_button">Example Note</a>
-            <a class="note_button">Example Note</a>
-            <a class="note_button">Example Note</a>
-            <a class="note_button">Example Note</a>
-            <a class="note_button">Example Note</a>
-            <a class="note_button">Example Note</a>
-            <a class="note_button">Example Note</a>
-            <a class="note_button">Example Note</a>
-            <a class="note_button">Example Note</a>
-            <a class="note_button">Example Note</a>
-            <a class="note_button">Example Note</a>
-            <a class="note_button">Example Note</a>
-            <a class="note_button">Example Note</a>
-            <a class="note_button">Example Note</a>
-            <a class="note_button">Example Note</a>
-            <a class="note_button">Example Note</a>
-            <a class="note_button">Example Note</a>
+    <body onload="load_projects()">
+        <div class="header"><button onclick="open_new_notebook()" class="new_notebook button_anims">+</button><span class="title">CocoNote</span></div>
+        <div id="scroll_area" class="scroll_area_other">
+
         </div>
     </body>
 </html>

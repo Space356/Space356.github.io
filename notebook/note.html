@@ -8,9 +8,9 @@
         <script src ="savedata.js"></script>
     </head>
     <body onload="on_note_load()">
-        <div class="header"><button class="button_anims new_notebook">🡐</button><h1 class="title">Placeholder Notebook Name</h1></div>
+        <div class="header"><button onclick="{window.location = '/notebook'}" class="button_anims new_notebook">🡐</button><input id="title" type="text" class="title" placeholder="Add Title" onchange="save_reset_timer()"></input></div>
         <div id="scroll_area" class="scroll_area">
-            <div id="n_0000" class="button_anims note" role="textbox"><div class="handle" contenteditable="false">≡</div><div onclick="delete_note('n_0000')" class="delete" contenteditable="false">x</div><div class="fill" id="tb_0000" contenteditable="true">New Note</div></div>
+            <div id="n_0000" class="button_anims note" role="textbox"><div class="handle" contenteditable="false">≡</div><div onclick="delete_note('n_0000')" class="delete" contenteditable="false">x</div><div class="fill" id="tb_0000" oninput="on_note_change('tb_0000')" contenteditable="true">New Note</div></div>
             <div id="b_0000" class="new_note">
                 <button 
                 class="new_note_plus" 

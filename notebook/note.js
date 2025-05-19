@@ -53,12 +53,12 @@ function append_note(id)
     note.id = "n_"+String(rand_id);
     note.className = "button_anims note";
     note.role = "textbox";
-    note.innerHTML = '<div class="handle" contenteditable="false">≡</div><div onclick="delete_note(\'n_'+String(rand_id)+'\')" class="delete" contenteditable="false">x</div><div id="tb_'+rand_id+'" class="fill" contenteditable="true">New Note</div>';
+    note.innerHTML = '<div class="handle" contenteditable="false">≡</div><div onclick="delete_note(\'n_'+String(rand_id)+'\')" class="delete" contenteditable="false">x</div><div id="tb_'+rand_id+'" class="fill" oninput="on_note_change(\'tb_'+rand_id+'\')" contenteditable="true">New Note</div>';
     container.insertBefore(note,document.getElementById(id));
     console.log("Made note with id "+note.id);
 
     open_add_menu(id); //closes the button
-
+    save_reset_timer();
     return(note);
 }
 function append_section(id)
@@ -99,6 +99,7 @@ function append_section(id)
     console.log("Made break with id "+sect_break.id);
 
     open_add_menu(id); //closes the button
+    save_reset_timer();
 }
 
 function on_note_load()
@@ -124,6 +125,7 @@ function on_note_load()
                     return false;
                 }
             }
+            save_reset_timer();
         }
     });
     load_notebook();
@@ -132,9 +134,24 @@ function on_note_load()
 function delete_note(id)
 {
     document.getElementById(id).remove();
+    save_reset_timer();
 }
 function delete_sect(id)
 {
     document.getElementById("s_"+id).remove();
     document.getElementById("b_"+id).remove();
+    save_reset_timer();
+}
+
+function on_note_change(id)
+{
+    elements = Array.from(document.getElementById(id).children);
+    elements.forEach(i =>
+    {
+        if(i.style !== "")
+        {
+            i.style = "";
+        }
+    });
+    save_reset_timer();
 }
