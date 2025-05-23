@@ -138,7 +138,7 @@ function open_new_notebook()
     let rand_id;
     do
     {
-        rand_id = floor(Math.random()*10000);
+        rand_id = Math.floor(Math.random()*10000);
     }
     while(data.projects[rand_id] !== undefined);
 
