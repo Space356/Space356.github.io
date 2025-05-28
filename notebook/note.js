@@ -136,6 +136,16 @@ function delete_note(id)
     document.getElementById(id).remove();
     save_reset_timer();
 }
+function delete_project(id)
+{
+    if(confirm("Are you sure you want to delete "+data.projects[id].name+"?"))
+    {
+        document.getElementById("p_"+id).remove();
+        delete data.projects[id];
+        console.log(JSON.stringify(data));
+        localStorage.setItem("notebook", JSON.stringify(data));
+    }
+}
 function delete_sect(id)
 {
     document.getElementById("s_"+id).remove();

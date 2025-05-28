@@ -81,6 +81,7 @@ function load_notebook()
         });
 
         document.getElementById("title").value = proj_data.name;
+        document.getElementById("html_title").innerHTML = proj_data.name;
     }
     else if(notebook_id !== null && notebook_id !== "")
     {
@@ -97,7 +98,17 @@ function load_notebook()
 function load_projects()
 {
     const container = document.getElementById("scroll_area");
-    data = JSON.parse(localStorage.getItem("notebook"));
+
+    let gotten = localStorage.getItem("notebook");
+    if(gotten === null || gotten === "")
+    {
+        localStorage.setItem("notebook",JSON.stringify(data));
+        console.log("Initialized Save Data.");
+    }
+    else
+    {
+        data = JSON.parse(gotten);
+    }
 
     project_names = Object.keys(data.projects);
     project_names.forEach(i =>
@@ -108,11 +119,11 @@ function load_projects()
         const name = data.projects[i].name;
         if(name !== "")
         {
-            proj.innerHTML = name;
+            proj.innerHTML = '<div onclick="event.preventDefault();delete_project(\''+i+'\')" class="delete" contenteditable="false">x</div>'+name;
         }
         else
         {
-            proj.innerHTML = "Untitled Notebook";
+            proj.innerHTML = '<div onclick="event.preventDefault();delete_project(\''+i+'\')" class="delete" contenteditable="false">x</div>Untitled Notebook';
         }
         proj.href = "/notebook/note.html?nbid="+i;
 
