@@ -64,8 +64,6 @@ function load_notebook()
         console.log("loading "+notebook_id);
         let proj_data = data.projects[notebook_id];
         console.log(proj_data);
-        //gotta get rid of the placeholder
-        document.getElementById("n_0000").remove();
 
         proj_data.note_array.forEach(i =>
         {
