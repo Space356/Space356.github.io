@@ -77,6 +77,7 @@ function load_notebook()
             {
                 let temp_note = append_note("b_0000");
                 temp_note.children[2].innerHTML = i;
+                //apply_element_scales(temp_note.id);
             }
         });
 
@@ -87,6 +88,7 @@ function load_notebook()
     {
         //makes a new notebook, cuz yeah.
         console.log("Making new notebook with id "+notebook_id);
+        /*apply_element_scales(*/append_note("b_0000")/*.id)*/;
         save_notebook();
     }
     else
@@ -129,6 +131,8 @@ function load_projects()
 
         container.appendChild(proj);
     });
+
+    apply_doc_scales();
 }
 
 function save_reset_timer()
@@ -154,4 +158,9 @@ function open_new_notebook()
     while(data.projects[rand_id] !== undefined);
 
     window.location = "/notebook/note.html?nbid="+rand_id;
+}
+
+function update_title()
+{
+    document.getElementById("html_title").innerHTML = document.getElementById("title").value;
 }

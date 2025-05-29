@@ -53,8 +53,9 @@ function append_note(id)
     note.id = "n_"+String(rand_id);
     note.className = "button_anims note";
     note.role = "textbox";
-    note.innerHTML = '<div class="handle" contenteditable="false">≡</div><div onclick="delete_note(\'n_'+String(rand_id)+'\')" class="delete" contenteditable="false">x</div><div id="tb_'+rand_id+'" class="fill" oninput="on_note_change(\'tb_'+rand_id+'\')" contenteditable="true">New Note</div>';
+    note.innerHTML = '<div class="handle" contenteditable="false">≡</div><div onclick="delete_note(\'n_'+String(rand_id)+'\')" class="delete" contenteditable="false">x</div><div id="tb_'+rand_id+'" class="fill" oninput="on_note_change(\''+rand_id+'\')" contenteditable="true">New Note</div>';
     container.insertBefore(note,document.getElementById(id));
+    apply_element_scales(note.id);
     console.log("Made note with id "+note.id);
 
     open_add_menu(id); //closes the button
@@ -103,7 +104,7 @@ function append_section(id)
 }
 
 function on_note_load()
-{
+{   
     const container = document.getElementById("scroll_area");
     new Sortable(container,
     {
@@ -129,6 +130,8 @@ function on_note_load()
         }
     });
     load_notebook();
+
+    apply_doc_scales();
 }
 
 function delete_note(id)
@@ -155,7 +158,8 @@ function delete_sect(id)
 
 function on_note_change(id)
 {
-    elements = Array.from(document.getElementById(id).children);
+    apply_element_scales("n_"+id);
+    elements = Array.from(document.getElementById("tb_"+id).children);
     elements.forEach(i =>
     {
         if(i.style !== "")
@@ -164,4 +168,33 @@ function on_note_change(id)
         }
     });
     save_reset_timer();
+}
+
+function apply_doc_scales()
+{
+    //loads the button animations and crap that are initialized with the document.
+    document.querySelectorAll(".button_anims").forEach(button =>
+    {
+        let width = button.offsetWidth;
+        let height = button.offsetHeight;
+        let scaleX = (width + 8) / width;
+        let scaleY = (height + 8) / height;
+
+        button.style.setProperty("--scale-factor-x", scaleX);
+        button.style.setProperty("--scale-factor-y", scaleY);
+
+        console.log(button);
+    });
+}
+
+function apply_element_scales(id)
+{
+    element = document.getElementById(id);
+    let width = element.offsetWidth;
+    let height = element.clientHeight;
+    let scaleX = (width + 16) / width;
+    let scaleY = (height + 16) / height;
+
+    element.style.setProperty("--scale-factor-x", scaleX);
+    element.style.setProperty("--scale-factor-y", scaleY);
 }
