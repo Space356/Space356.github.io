@@ -192,8 +192,8 @@ function apply_element_scales(id)
     element = document.getElementById(id);
     let width = element.offsetWidth;
     let height = element.clientHeight;
-    let scaleX = (width + 16) / width;
-    let scaleY = (height + 16) / height;
+    let scaleX = (width + 8) / width;
+    let scaleY = (height + 8) / height;
 
     element.style.setProperty("--scale-factor-x", scaleX);
     element.style.setProperty("--scale-factor-y", scaleY);
