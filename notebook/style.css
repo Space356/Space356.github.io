@@ -271,6 +271,7 @@ body
 .button_anims:hover .fill
 {
     transform : scale(calc(1/var(--scale-factor-x)),calc(1/var(--scale-factor-y)));
+    outline-offset: 0px;
 }
 
 .break
