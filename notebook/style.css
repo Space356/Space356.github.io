@@ -46,14 +46,14 @@ body
     display : inline-block;
     box-sizing: border-box;
     transform: scale(1);
-    outline : solid 4px rgba(var(--accent),0);
+    outline : solid 6px rgba(var(--accent),0);
     outline-offset: -4px;
     border-radius: 2px;
     transition: all 0.7s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 .fill:focus
 {
-    outline : solid 4px rgba(var(--accent),0.25);
+    outline : solid 6px rgba(var(--accent),0.25);
     /*background-color: rgba(var(--accent),0.25);*/
 }
 .header
