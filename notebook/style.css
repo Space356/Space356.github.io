@@ -46,14 +46,14 @@ body
     display : inline-block;
     box-sizing: border-box;
     transform: scale(1);
+    outline: none;
+    outline-offset: -4px;
+    border-radius: 4px;
     transition: all 0.7s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 .fill:focus
 {
-    outline: none;
-    border-radius: 4px;
     outline : solid 4px rgba(var(--accent),0.25);
-    outline-offset: -4px;
     /*background-color: rgba(var(--accent),0.25);*/
 }
 .header
