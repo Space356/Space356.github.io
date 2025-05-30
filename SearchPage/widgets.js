@@ -3,7 +3,7 @@ widget_array =
 [
     '',
     '<h1 class="time_text anims" name="time"></h1><br><h2 class="time_text font_smaller anims" name="datehtml"></h2><div style="position: absolute; bottom : 0px; width:100%; height:50%;">'+weather_string+'</div>',
-    'notebook',
+    '<iframe src="/notebook/?transparent=yes"/>',
     'iframe',
     'to-do list'
 ];

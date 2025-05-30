@@ -42,7 +42,7 @@ function open_add_menu(id)
     }
 }
 
-function append_note(id)
+function append_note(id, close_button = true)
 {
     console.log("trying "+id);
     //id="n_0000" class="button_anims note" role="textbox" contenteditable
@@ -58,7 +58,10 @@ function append_note(id)
     apply_element_scales(note.id);
     console.log("Made note with id "+note.id);
 
-    open_add_menu(id); //closes the button
+    if(close_button)
+    {
+        open_add_menu(id); //closes the button
+    }
     save_reset_timer();
     return(note);
 }
@@ -168,33 +171,4 @@ function on_note_change(id)
         }
     });
     save_reset_timer();
-}
-
-function apply_doc_scales()
-{
-    //loads the button animations and crap that are initialized with the document.
-    document.querySelectorAll(".button_anims").forEach(button =>
-    {
-        let width = button.offsetWidth;
-        let height = button.offsetHeight;
-        let scaleX = (width + 8) / width;
-        let scaleY = (height + 8) / height;
-
-        button.style.setProperty("--scale-factor-x", scaleX);
-        button.style.setProperty("--scale-factor-y", scaleY);
-
-        console.log(button);
-    });
-}
-
-function apply_element_scales(id)
-{
-    element = document.getElementById(id);
-    let width = element.offsetWidth;
-    let height = element.clientHeight;
-    let scaleX = (width + 8) / width;
-    let scaleY = (height + 8) / height;
-
-    element.style.setProperty("--scale-factor-x", scaleX);
-    element.style.setProperty("--scale-factor-y", scaleY);
 }

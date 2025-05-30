@@ -59,6 +59,10 @@ function load_notebook()
     const urlParams = new URLSearchParams(window.location.search);
 
     notebook_id = urlParams.get("nbid");
+    if(urlParams.get("transparent") === "yes")
+    {
+        document.documentElement.style.setProperty("--body-color","#FF000000");
+    }
     if(data.projects[notebook_id] !== undefined)
     {
         console.log("loading "+notebook_id);
@@ -73,7 +77,7 @@ function load_notebook()
             }
             else
             {
-                let temp_note = append_note("b_0000");
+                let temp_note = append_note("b_0000",false);
                 temp_note.children[2].innerHTML = i;
                 //apply_element_scales(temp_note.id);
             }
@@ -93,10 +97,14 @@ function load_notebook()
     {
         alert("Error, missing ID. (The URL is probably wrong)");
     }
+
+    apply_doc_scales();
 }
 
 function load_projects()
 {
+    const urlParams = new URLSearchParams(window.location.search);
+
     const container = document.getElementById("scroll_area");
 
     let gotten = localStorage.getItem("notebook");
@@ -125,12 +133,18 @@ function load_projects()
         {
             proj.innerHTML = '<div onclick="event.preventDefault();delete_project(\''+i+'\')" class="delete" contenteditable="false">x</div>Untitled Notebook';
         }
-        proj.href = "/notebook/note.html?nbid="+i;
+        proj.href = "/notebook/note.html?nbid="+i+"&transparent=yes";
 
         container.appendChild(proj);
     });
 
     apply_doc_scales();
+
+    //transparency
+    if(urlParams.get("transparent") === "yes")
+    {
+        document.documentElement.style.setProperty("--body-color","#FF000000");
+    }
 }
 
 function save_reset_timer()
@@ -144,21 +158,4 @@ function save_reset_timer()
     {
         save_notebook();
     },2000);
-}
-
-function open_new_notebook()
-{
-    let rand_id;
-    do
-    {
-        rand_id = Math.floor(Math.random()*10000);
-    }
-    while(data.projects[rand_id] !== undefined);
-
-    window.location = "/notebook/note.html?nbid="+rand_id;
-}
-
-function update_title()
-{
-    document.getElementById("html_title").innerHTML = document.getElementById("title").value;
 }
