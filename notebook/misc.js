@@ -32,7 +32,7 @@ function return_to_homepage()
     }
     else
     {
-        window.location = "/notebook/;"
+        window.location = "/notebook/";
     }
 }
 

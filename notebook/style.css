@@ -49,7 +49,6 @@ body
     outline : solid 6px rgba(var(--accent),0);
     outline-offset: -4px;
     border-radius: 2px;
-    transition: all 0.7s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 .fill:focus
 {
@@ -273,8 +272,16 @@ body
 }
 .button_anims:hover .fill
 {
-    transform : scale(calc(1/var(--scale-factor-x)),calc(1/var(--scale-factor-y)));
     outline-offset: 0px;
+}
+.scaler
+{
+    transform : scale(1,1);
+    transition: all 0.7s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.button_anims:hover .scaler
+{
+    transform : scale(calc(1/var(--scale-factor-x)),calc(1/var(--scale-factor-y)));
 }
 
 .break
@@ -295,7 +302,7 @@ body
 }
 .delete_sect
 {
-    color : var(--body-color);
+    color : black;
     display : flex;
     justify-content: center;
     align-items: center;

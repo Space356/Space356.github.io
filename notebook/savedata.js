@@ -104,6 +104,7 @@ function load_notebook()
 function load_projects()
 {
     const urlParams = new URLSearchParams(window.location.search);
+    const trans = urlParams.get("transparent") === "yes";
 
     const container = document.getElementById("scroll_area");
 
@@ -127,13 +128,20 @@ function load_projects()
         const name = data.projects[i].name;
         if(name !== "")
         {
-            proj.innerHTML = '<div onclick="event.preventDefault();delete_project(\''+i+'\')" class="delete" contenteditable="false">x</div>'+name;
+            proj.innerHTML = '<div onclick="event.preventDefault();delete_project(\''+i+'\')" class="delete" contenteditable="false">x</div><div class="scaler">'+name+'</div>';
         }
         else
         {
-            proj.innerHTML = '<div onclick="event.preventDefault();delete_project(\''+i+'\')" class="delete" contenteditable="false">x</div>Untitled Notebook';
+            proj.innerHTML = '<div onclick="event.preventDefault();delete_project(\''+i+'\')" class="delete" contenteditable="false">x</div><div class="scaler">Untitled Notebook</div>';
         }
-        proj.href = "/notebook/note.html?nbid="+i+"&transparent=yes";
+        if(trans)
+        {
+            proj.href = "/notebook/note.html?nbid="+i+"&transparent=yes";
+        }
+        else
+        {
+            proj.href = "/notebook/note.html?nbid="+i;
+        }
 
         container.appendChild(proj);
     });
@@ -141,7 +149,7 @@ function load_projects()
     apply_doc_scales();
 
     //transparency
-    if(urlParams.get("transparent") === "yes")
+    if(trans)
     {
         document.documentElement.style.setProperty("--body-color","#FF000000");
     }

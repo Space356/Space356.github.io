@@ -53,7 +53,7 @@ function append_note(id, close_button = true)
     note.id = "n_"+String(rand_id);
     note.className = "button_anims note";
     note.role = "textbox";
-    note.innerHTML = '<div class="handle" contenteditable="false">≡</div><div onclick="delete_note(\'n_'+String(rand_id)+'\')" class="delete" contenteditable="false">x</div><div id="tb_'+rand_id+'" class="fill" oninput="on_note_change(\''+rand_id+'\')" contenteditable="true">New Note</div>';
+    note.innerHTML = '<div class="handle" contenteditable="false">≡</div><div onclick="delete_note(\'n_'+String(rand_id)+'\')" class="delete" contenteditable="false">x</div><div id="tb_'+rand_id+'" class="fill scaler" oninput="on_note_change(\''+rand_id+'\')" contenteditable="true">New Note</div>';
     container.insertBefore(note,document.getElementById(id));
     apply_element_scales(note.id);
     console.log("Made note with id "+note.id);
@@ -89,8 +89,8 @@ function append_section(id)
     new_button.className = "new_note";
     new_button.innerHTML = //Look down
         '<button class="new_note_plus" id="b_'+rand_id+'_plus" onmouseenter="plus_hover_enter(\'b_'+rand_id+'\')" onmouseleave="plus_hover_leave(\'b_'+rand_id+'\')" onclick="open_add_menu(\'b_'+rand_id+'\')">+</button>'+
-        '<button onclick="append_note(\'b_'+rand_id+'\')" tabindex="-1" id="b_'+rand_id+'_nn" class="button_anims new_note_expand_button" style="top: 8px; pointer-events: none;">New Note</button>'+
-        '<button onclick="append_section(\'b_'+rand_id+'\')" tabindex="-1" id="b_'+rand_id+'_ns" class="button_anims new_note_expand_button" style="top: 48px; pointer-events: none;">New Section</button>'
+        '<button onclick="append_note(\'b_'+rand_id+'\')" tabindex="-1" id="b_'+rand_id+'_nn" class="button_anims new_note_expand_button" style="top: 8px; pointer-events: none;"><div class="scaler">New Note</div></button>'+
+        '<button onclick="append_section(\'b_'+rand_id+'\')" tabindex="-1" id="b_'+rand_id+'_ns" class="button_anims new_note_expand_button" style="top: 48px; pointer-events: none;"><div class="scaler">New Section</div></button>'
     container.insertBefore(new_button,document.getElementById(id));
     console.log("Made button with id "+new_button.id);
 
