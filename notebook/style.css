@@ -361,7 +361,7 @@ span
 {
     
     max-width: 50vw;
-    height:auto;
+    max-height: 50vh;
 }
 img
 {
