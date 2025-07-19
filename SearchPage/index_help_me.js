@@ -5,6 +5,7 @@ var search_engine = "https://www.bing.com/search?q=c0c0";
 var settings =
 {
     prev_search : false,
+    brightness : 100
 }
 var logo_rotate = true;
 
@@ -259,6 +260,7 @@ function delete_bookmark(id)
 function setting_reset()
 {
     settings.prev_search = document.getElementById("setting_presearch").checked;
+    settings.brightness = document.getElementById("bg_brightness").value;
     localStorage.setItem("settings",JSON.stringify(settings));
 }
 function setting_load()
@@ -268,7 +270,17 @@ function setting_load()
     {
         settings = JSON.parse(temp_settings);
         document.getElementById("setting_presearch").checked = settings.prev_search;
+        document.getElementById("bg_brightness").value = settings.brightness;
+
+        const img = document.getElementById('wallpaper').style.opacity = settings.brightness;
     }
 
     load_widgets();
+}
+
+function brightness_change()
+{
+    const img = document.getElementById('wallpaper');
+    img.style.opacity = document.getElementById("bg_brightness").value;
+    setting_reset();
 }
