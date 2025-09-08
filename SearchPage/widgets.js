@@ -4,16 +4,18 @@ widget_array =
     '',
     '<h1 class="time_text anims" name="time"></h1><br><h2 class="time_text font_smaller anims" name="datehtml"></h2><div style="position: absolute; bottom : 0px; width:100%; height:50%;">'+weather_string+'</div>',
     '<iframe src="/notebook/?transparent=yes"/>',
-    'iframe',
-    'to-do list'
+    '<iframe id="iframe_widget_left" src=""/>',
+    'to-do list',
+    '<iframe class="iframe_widget" id="iframe_widget_right" src=""/>'
 ];
 option_array =
 [
     '',
     'These are otions for time and weather.',
     'These are options for the notebook.',
-    'These are options for the iframe.',
-    'These are options for the to-do list.'
+    'URL: <input type="url" placeholder="url" id="iframe_url_left" onchange="set_iframe_url(\'left\')"><br>Zoom: <input type="range" min="0.1" max="2" step="0.1" value="0.65" id="iframe_zoom_left" onchange="set_iframe_url(\'left\')">',
+    'These are options for the to-do list.',
+    'URL: <input type="url" placeholder="url" id="iframe_url_right" onchange="set_iframe_url(\'right\')"><br>Zoom: <input type="range" min="0.1" max="2" step="0.1" value="0.65" id="iframe_zoom_right" onchange="set_iframe_url(\'right\')">'
 ]
 
 function set_widget(side)
@@ -57,4 +59,43 @@ function load_widgets()
     }
     set_widget("left");
     set_widget("right");
+
+    load_iframe_urls();
+}
+
+function set_iframe_url(side)
+{
+    const iframe_url = document.getElementById("iframe_url_"+side).value;
+    const iframe_zoom = document.getElementById("iframe_zoom_"+side).value;
+    localStorage.setItem("iframe_widget_"+side,iframe_url);
+    localStorage.setItem("iframe_zoom_"+side,iframe_zoom);
+    const thing = document.getElementById("iframe_widget_"+side);
+    thing.src = iframe_url;
+    thing.style.zoom = iframe_zoom;
+}
+function load_iframe_urls()
+{
+    if(localStorage.getItem("left_widget") == 3)
+    {
+        let side = "left";
+        let iframe_url = localStorage.getItem("iframe_widget_"+side);
+        let iframe_zoom = localStorage.getItem("iframe_zoom_"+side);
+        document.getElementById("iframe_url_"+side).value = iframe_url;
+        document.getElementById("iframe_zoom_"+side).value = iframe_zoom;
+        const thing = document.getElementById("iframe_widget_"+side);
+        thing.src = iframe_url;
+        thing.style.zoom = iframe_zoom;
+    }
+
+    if(localStorage.getItem("right_widget") == 5)
+    {
+        let side = "right";
+        let iframe_url = localStorage.getItem("iframe_widget_"+side);
+        let iframe_zoom = localStorage.getItem("iframe_zoom_"+side);
+        document.getElementById("iframe_url_"+side).value = iframe_url;
+        document.getElementById("iframe_zoom_"+side).value = iframe_zoom;
+        const thing = document.getElementById("iframe_widget_"+side);
+        thing.src = iframe_url;
+        thing.style.zoom = iframe_zoom;
+    }
 }

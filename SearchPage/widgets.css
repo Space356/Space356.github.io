@@ -19,3 +19,7 @@ iframe
     height : 100%;
     overflow: hidden;
 }
+.iframe_widget
+{
+    zoom : 0.65;
+}
