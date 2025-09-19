@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="index.js"></script>
+        <script type="module" src="FireBaseInit.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <title>Login/SignUp</title>
+    </head>
+    <body id="body" onload="toggle_register_page()">
+        <form id="the_form">
+            <h1>Login / Register</h1>
+            <div class="inner">
+            <input class="button_animation" id="email" type="email" placeholder="Email">
+            <input class="button_animation" id="password" type="password" placeholder="Password">
+            <input class="button_animation" id="password2" type="password" placeholder="Confirm Password">
+            <div class="labels"><b>Email: </b><b>Password: </b><b id="confirm">Confirm: </b></div>
+            </div>
+            <button style="width:80px" class="button_animation" name="submit">Submit</button>
+            <label for="register">Use info to register?<input id="register" type="checkbox" onchange="toggle_register_page()"></label>
+        </form>
+        <p>I promise I won't use ur data for bad stuff.</p>
+        <p>Just know I will be able to see ur stuff in the database, so don't make anything you don't want me seeing.</p>
+        <p>Btw, I don't know how to make a "forgot passowrd" page, so write ur stuff down.</p>
+    </body>
+</html>

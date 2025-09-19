@@ -50,6 +50,13 @@ body
     outline-offset: -4px;
     border-radius: 2px;
 }
+
+/*
+DDDDAAAAAAAANNNNNTTTTEEEEEEEEEEEEEEEEEEEEEEE
+
+For when u get back, I am getting myself some eatery.
+*/
+
 .fill:focus
 {
     outline : solid 6px rgba(var(--accent),0.25);
