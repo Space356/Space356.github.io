@@ -5,15 +5,16 @@ body
     margin: 0;
     padding: 0;
     color: white;
+    overflow: hidden;
 }
 ul
 {
     position: absolute;
-    top: 61px;
+    top: 56px;
     left:50%;
     transform: translateX(-50%);
     width: 90%;
-    height: calc(100% - 253px);
+    height: calc(100% - 248px);
     /*border: solid 4px #606060;*/
     margin: auto;
     overflow-y: scroll;
@@ -72,12 +73,38 @@ li:first-child {border-top-left-radius: 16px; border-top-right-radius: 16px; }
 }
 .title
 {
-    width:100%;
+    width: 100%;
     text-align: center;
     border-bottom: solid 4px grey;
     height : 42px;
     margin:0;
-    padding: 8px;
+    padding-top: 10px;
     background-color: #303030;
     z-index: 1000;
+}
+.message_input
+{
+    width : 75%;
+    padding: 10px;
+    font-size: 16px;
+    border: solid 4px white;
+    border-radius: 8px;
+    margin-right: 10px;
+    background-color: black;
+    color: white;
+}
+
+.send_button
+{
+    padding: 10px 20px;
+    font-size: 16px;
+    border: solid 4px white;
+    border-radius: 8px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+.send_button:hover
+{
+    background-color: #404040;
 }
