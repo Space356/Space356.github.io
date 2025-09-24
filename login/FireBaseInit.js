@@ -91,9 +91,9 @@ function signUp()
       set(ref(db, 'users/' + user.uid),
       {
         username : generate_name(),
-        notebook : "to be developed",
-        cocobrowse : "to be developed",
-        cocochat : "to be started in the first place"
+        notebook : "pending",
+        cocobrowse : "pending",
+        cocochat : "pending"
       });
       console.log('Sign Up Successful:', user);
     }).catch((error) => 

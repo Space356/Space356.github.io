@@ -20,6 +20,8 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 const auth = getAuth(app);
 
+const sign_out_button = document.getElementById("sign_out");
+
 onAuthStateChanged(auth, (user) =>
 {
     if (user)
@@ -41,10 +43,13 @@ onAuthStateChanged(auth, (user) =>
     else
     {
         // User is signed out
-        // ...
+        console.log("Signed Out");
+        document.getElementById("curr_user").innerHTML = "<h1>Not Signed In</h1>";
+        sign_out_button.innerHTML = "Log In";
     }
 });
-document.getElementById("sign_out").addEventListener('click', function(e)
+
+sign_out_button.addEventListener('click', function(e)
 {
     e.preventDefault();
     auth.signOut().then(() =>
@@ -52,6 +57,7 @@ document.getElementById("sign_out").addEventListener('click', function(e)
         // Sign-out successful.
         console.log("Signed Out");
         document.getElementById("curr_user").innerHTML = "<h1>Not Signed In</h1>";
+        sign_out_button.innerHTML = "Log In";
     }).catch((error) =>
     {
         // An error happened.
