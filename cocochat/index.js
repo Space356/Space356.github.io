@@ -60,7 +60,7 @@ send_button.addEventListener("click", function(e)
 });
 
 //message loading
-const queriesRef = query(ref(db, 'chats/'+chat_id+"/messages/"), limitToLast(20));
+const queriesRef = query(ref(db, 'chats/'+chat_id+"/messages/"), limitToLast(40));
 
 // Attach a listener to the query
 onValue(queriesRef, (snapshot) =>
