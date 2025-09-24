@@ -68,7 +68,7 @@ onValue(queriesRef, (snapshot) =>
     if (snapshot.exists())
     {
         const recentQueries = snapshot.val();
-        const orderedQueries = Object.values(recentQueries);
+        const orderedQueries = Object.values(recentQueries).reverse();
         console.log(orderedQueries);
         // You may need to reverse the order to display them chronologically
         /*const orderedQueries = Object.values(recentQueries).reverse();
