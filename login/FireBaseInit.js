@@ -102,7 +102,7 @@ function signUp()
         cocobrowse : "pending",
         cocochat : "pending"
       });
-      alert('Sign Up Successful:', user);
+      alert('Sign Up Successful! Now log in with your new account.');
       //window.location.href = "/login/AccountTab.html";
     }).catch((error) => 
     {
