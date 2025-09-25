@@ -70,7 +70,14 @@ sub_button.addEventListener('click', function(e)
                 }
             }
         });*/
-        signUp();
+        if(data_obj.password == data_obj.password2)
+        {
+            signUp();
+        }
+        else
+        {
+            alert("Passwords don't match");
+        }
     }
     else
     {
@@ -96,9 +103,10 @@ function signUp()
         cocochat : "pending"
       });
       console.log('Sign Up Successful:', user);
+      window.location.href = "/login/AccountTab.html";
     }).catch((error) => 
     {
-      console.error('Error signing up:', error.message);
+      alert('Error signing up:', error.message);
     });
     
 }
@@ -111,8 +119,9 @@ function logIn()
     {
       const user = userCredential.user;
       console.log('Log In Successful:', user);
+      window.location.href = "/login/AccountTab.html";
     }).catch((error) =>
     {
-      console.error('Error logging in:', error.message);
+      alert('Error logging in:', error.message);
     });
 }

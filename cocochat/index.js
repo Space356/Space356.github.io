@@ -77,21 +77,28 @@ console.log("Chat ID: "+chat_id);
 send_button.addEventListener("click", function(e)
 {
     e.preventDefault();
-    const message_input = document.getElementById("message_input")
-    const message = message_input.value;
-    set(push(ref(db, 'chats/'+chat_id+"/messages")), {
-        message: message,
-        user: uid,
-        timestamp: Date.now()
-    }).then(() => {
-        // Data saved successfully!
-        console.log("Message sent!");
-        message_input.value = "";
-    })
-    .catch((error) => {
-        // The write failed...
-        console.error("Error sending message: ", error);
-    })
+    if(uid != "nada")
+    {
+        const message_input = document.getElementById("message_input")
+        const message = message_input.value;
+        set(push(ref(db, 'chats/'+chat_id+"/messages")), {
+            message: message,
+            user: uid,
+            timestamp: Date.now()
+        }).then(() => {
+            // Data saved successfully!
+            console.log("Message sent!");
+            message_input.value = "";
+        })
+        .catch((error) => {
+            // The write failed...
+            console.error("Error sending message: ", error);
+        })
+    }
+    else
+    {
+        alert("You must be logged in to send messages. Go here to do that: https://space356hosting.github.io/login/");
+    }
 });
 
 const messageList = document.getElementById("message_list");
