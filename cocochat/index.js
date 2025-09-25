@@ -37,6 +37,7 @@ onAuthStateChanged(auth, (user) =>
         uid = user.uid;
         //add to members list
         set(ref(db, 'chats/' + chat_id + '/members/' + uid), true);
+        set(ref(db, 'users/'+uid+'/cocochat/savedChats/'+chat_id), true);
     }
     console.log("User ID: "+uid);
 });
