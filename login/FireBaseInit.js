@@ -103,12 +103,10 @@ function signUp()
         cocochat : "pending"
       });
       console.log('Sign Up Successful:', user);
-      window.location.href = "/login/AccountTab.html";
     }).catch((error) => 
     {
       alert('Error signing up:', error.message);
     });
-    
 }
 
 function logIn()
