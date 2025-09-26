@@ -310,7 +310,7 @@ messageList.addEventListener("scroll", () =>
 const titleElement = document.getElementById("title");
 titleElement.addEventListener("blur", () =>
 {
-    const newTitle = titleElement.innerText.trim();
+    const newTitle = titleElement.value.trim();
     if (newTitle.length > 0)
     {
         set(ref(db, 'chats/' + chat_id+"/name"),newTitle).then(() =>
