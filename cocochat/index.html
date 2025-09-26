@@ -8,12 +8,13 @@
     </head>
     <body>
         <div id="container">
-            <div id="header">
-                <h1 class="title" id="title">CocoChat</h1>
-            </div>
-            <div id="chat-window">
-                <ul class="chatlist" id="message_list">
 
+            <ul class="message_list" id="message_list"></ul>
+            <input type="text" class="title" id="title" placeholder="Click here to name this chat"></input>
+            <div id="saved_chats">
+                <h2>Saved Chats</h2>
+                <ul id="saved_chats_list" class="chatlist">
+                    <!-- Saved chats will be loaded here -->
                 </ul>
             </div>
             <form class="sendbox" id="message-form">

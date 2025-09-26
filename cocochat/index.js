@@ -38,6 +38,7 @@ onAuthStateChanged(auth, (user) =>
         //add to members list
         set(ref(db, 'chats/' + chat_id + '/members/' + uid), true);
         set(ref(db, 'users/'+uid+'/cocochat/savedChats/'+chat_id), true);
+        loadSavedChats();
     }
     console.log("User ID: "+uid);
 });
@@ -62,7 +63,7 @@ get(ref(db, 'chats/' + chat_id)).then((snapshot) =>
     if (snapshot.exists())
     {
         const chatData = snapshot.val();
-        document.getElementById("title").innerText = chatData.name;
+        document.getElementById("title").value = chatData.name;
         console.log(chatData.name);
     }
     else
@@ -75,6 +76,45 @@ get(ref(db, 'chats/' + chat_id)).then((snapshot) =>
 });
 
 console.log("Chat ID: "+chat_id);
+
+//load links to saved chats
+function loadSavedChats()
+{
+    get(ref(db, 'users/' + uid + '/cocochat/savedChats')).then((snapshot) =>
+    {
+        if (snapshot.exists())
+        {
+            const savedChats = snapshot.val();
+            const savedChatsList = document.getElementById("saved_chats_list");
+            for (const chatKey in savedChats)
+            {
+                get(ref(db, 'chats/' + chatKey)).then((chatSnapshot) =>
+                {
+                    if (chatSnapshot.exists())
+                    {
+                        const chatData = chatSnapshot.val();
+                        const chatLink = document.createElement("a");
+                        chatLink.href = "index.html?chatid=" + chatKey;
+                        chatLink.innerText = chatData.name;
+                        const listItem = document.createElement("li");
+                        listItem.appendChild(chatLink);
+                        savedChatsList.appendChild(listItem);
+                        console.log("Loaded saved chat: ", chatData.name);
+                    }
+                });
+            }
+        }
+        else
+        {
+            console.log("No saved chats found.");
+        }
+    }).catch((error) =>
+    {
+        console.error("Error fetching saved chats: ", error);
+    });
+}
+
+//message sending
 send_button.addEventListener("click", function(e)
 {
     e.preventDefault();
@@ -82,16 +122,23 @@ send_button.addEventListener("click", function(e)
     {
         const message_input = document.getElementById("message_input")
         const message = message_input.value;
+        if (message.trim() === "")
+        {
+            return; // Don't send empty messages
+        }
+        //push message to firebase
         set(push(ref(db, 'chats/'+chat_id+"/messages")), {
             message: message,
             user: uid,
             timestamp: Date.now()
-        }).then(() => {
+        }).then(() =>
+        {
             // Data saved successfully!
             console.log("Message sent!");
             message_input.value = "";
         })
-        .catch((error) => {
+        .catch((error) =>
+        {
             // The write failed...
             console.error("Error sending message: ", error);
         })
@@ -256,5 +303,30 @@ messageList.addEventListener("scroll", () =>
     {
         console.log("Loading older messages.");
         loadOlderMessages();
+    }
+});
+
+//title editing
+const titleElement = document.getElementById("title");
+titleElement.addEventListener("blur", () =>
+{
+    const newTitle = titleElement.innerText.trim();
+    if (newTitle.length > 0)
+    {
+        set(ref(db, 'chats/' + chat_id+"/name"),newTitle).then(() =>
+        {
+            console.log("Chat title updated to: ", newTitle);
+        }).catch((error) =>
+        {
+            console.error("Error updating chat title: ", error);
+        });
+    }
+});
+titleElement.addEventListener("keydown", (e) =>
+{
+    if (e.key === "Enter")
+    {
+        e.preventDefault();
+        titleElement.blur();
     }
 });

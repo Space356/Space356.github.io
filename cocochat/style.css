@@ -7,27 +7,25 @@ body
     color: white;
     overflow: hidden;
 }
-ul
+.message_list
 {
     position: absolute;
-    top: 56px;
-    left:50%;
-    transform: translateX(-50%);
-    width: 90%;
-    height: calc(100% - 280px);
+    top: 53px;
+    right : 8px;
+    width: calc(100% - 356px);
+    height: calc(100% - 277px);
     /*border: solid 4px #606060;*/
     margin: auto;
     overflow-y: scroll;
-    padding: 64px;
-    padding-top: 32px;
-    padding-bottom: 128px;
-    z-index: 100;
+    padding: 32px 16px 128px 128px;
+    z-index: 1000;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
     justify-content: flex-start;
+    z-index: 1;
 }
-li
+.message_list li
 {
     background-color: #404040;
     width : 75%;
@@ -39,9 +37,9 @@ li
     border-bottom: none;
     font-size: 14pt;
 }
-li:nth-child(odd) { background-color: #303030; }
-li:last-child { border-bottom: solid 4px grey; border-bottom-left-radius: 16px; border-bottom-right-radius: 16px; }
-li:first-child {border-top-left-radius: 16px; border-top-right-radius: 16px; }
+.message_list li:nth-child(odd) { background-color: #303030; }
+.message_list li:last-child { border-bottom: solid 4px grey; border-bottom-left-radius: 16px; border-bottom-right-radius: 16px; }
+.message_list li:first-child {border-top-left-radius: 16px; border-top-right-radius: 16px; }
 
 .sendbox
 {
@@ -55,7 +53,9 @@ li:first-child {border-top-left-radius: 16px; border-top-right-radius: 16px; }
     display: flex;
     justify-content: center;
     align-items: center;
-    border-top: solid 4px #606060;
+    border-top: solid 4px grey;
+    z-index: 100;
+    box-shadow: 0px 0px 32px black;
 }
 
 ::-webkit-scrollbar
@@ -77,14 +77,25 @@ li:first-child {border-top-left-radius: 16px; border-top-right-radius: 16px; }
 }
 .title
 {
+    position: absolute;
     width: 100%;
     text-align: center;
     border-bottom: solid 4px grey;
     height : 42px;
     margin:0;
-    padding-top: 10px;
+    padding-top: 6px;
     background-color: #303030;
+    color: white;
+    font-size: 24px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
     z-index: 1000;
+    box-shadow: 0px 0px 32px black;
+}
+.title:focus
+{
+    outline: none;
+    text-decoration: underline;;
 }
 .message_input
 {
@@ -114,4 +125,63 @@ li:first-child {border-top-left-radius: 16px; border-top-right-radius: 16px; }
 .send_button:hover
 {
     background-color: #404040;
+}
+.chatlist
+{
+    position: relative;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    top: -16px;
+    width: 100%;
+    height: calc(100% - 44px);
+    overflow-y: auto;
+    align-items: center;
+}
+.chatlist h2
+{
+    text-align: center;
+    margin: 0 0 8px 0;
+    padding: 0;
+    font-size: 18px;
+    border-bottom: solid 4px grey;
+    background-color: black;
+}
+.chatlist li
+{
+    background-color: #404040;
+    margin: 8px 0;
+    padding: 12px;
+    border: solid 4px grey;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.chatlist li:hover
+{
+    background-color: #505050;
+}
+.chatlist li.selected
+{
+    background-color: #606060;
+}
+a
+{
+    color: white;
+    text-decoration: none;
+}
+#saved_chats /*had no clue you could do this*/
+{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 3%;
+    width: 200px;
+    height: 50%;
+    z-index: 100;
+    background-color: #303030;
+    border: solid 4px grey;
+    border-radius: 16px;;
+    padding: 8px;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 32px black;
 }
