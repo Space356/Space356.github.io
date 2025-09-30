@@ -69,6 +69,9 @@ get(ref(db, 'chats/' + chat_id)).then((snapshot) =>
     else
     {
         console.log("No chat data found.");
+        chat_id = "12345678"; // reset to default chat ID if not found
+        alert("Chat ID not found. Redirecting to default chat.");
+        window.location.href = "index.html?chatid="+chat_id;
     }
 }).catch((error) =>
 {
