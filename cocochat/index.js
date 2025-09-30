@@ -315,7 +315,7 @@ function loadOlderMessages()
                         //adds timestamp
                         const messageTime = document.createElement("div");
                         messageTime.classList.add("chat-time");
-                        messageTime.innerText = new Date(queryData.timestamp).toLocaleString();
+                        messageTime.innerText = new Date(messageData.timestamp).toLocaleString();
                         messageItem.appendChild(messageTime);
                         messageList.insertBefore(messageItem, messageList.firstChild);
 
