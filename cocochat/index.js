@@ -309,7 +309,7 @@ function loadOlderMessages()
                         //appends message content
                         const messageContent = document.createElement("div");
                         messageContent.classList.add("message-content");
-                        messageContent.innerText = queryData.message;
+                        messageContent.innerText = messageData.message;
                         messageItem.appendChild(messageContent);
 
                         //adds timestamp
