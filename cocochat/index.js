@@ -56,7 +56,7 @@ else
     temp_id = "12345678"; // default chat ID
 }
 
-const chat_id = temp_id; // make this changable later.
+let chat_id = temp_id; // make this changable later.
 
 get(ref(db, 'chats/' + chat_id)).then((snapshot) =>
 {
