@@ -100,7 +100,8 @@ function signUp()
         username : generate_name(),
         notebook : "pending",
         cocobrowse : "pending",
-        cocochat : "pending"
+        cocochat : "pending",
+        color : "FFFFFF"
       });
       alert('Sign Up Successful! Now log in with your new account.');
       //window.location.href = "/login/AccountTab.html";

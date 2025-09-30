@@ -218,11 +218,13 @@ onChildAdded(queriesRef, (data) =>
     console.log("New message added with key (Also latest message): ", latest_message);
     //get username from uid
     let username = "nada";
+    let color = "FFFFFF";
     get(ref(db, 'users/' + queryData.user)).then((snapshot) =>
     {
         if (snapshot.exists())
         {
             username = snapshot.val().username;
+            color = snapshot.val().color;
             console.log(snapshot.val().username);
         }
         let scrollToBottom = false;
@@ -231,7 +233,25 @@ onChildAdded(queriesRef, (data) =>
             scrollToBottom = true;
         }
         //appends the message once the username is fetched
-        messageItem.innerText = username+": "+queryData.message;
+        //messageItem.innerHTML = '<div class="username">'+username+':</div>'
+        const usernameDiv = document.createElement("div");
+        usernameDiv.classList.add("username");
+        usernameDiv.innerText = username+":";
+        usernameDiv.style.color = "#"+color;
+        messageItem.appendChild(usernameDiv);
+        //appends message content
+        const messageContent = document.createElement("div");
+        messageContent.classList.add("message-content");
+        messageContent.innerText = queryData.message;
+        messageItem.appendChild(messageContent);
+
+        //adds timestamp
+        const messageTime = document.createElement("div");
+        messageTime.classList.add("chat-time");
+        messageTime.innerText = new Date(queryData.timestamp).toLocaleString();
+        messageItem.appendChild(messageTime);
+
+        //finally appends the message
         messageList.appendChild(messageItem);
 
         if(scrollToBottom)
@@ -271,15 +291,32 @@ function loadOlderMessages()
 
                     //get username from uid
                     let username = "nada";
+                    let color = "FFFFFF";
                     get(ref(db, 'users/' + messageData.user)).then((snapshot) =>
                     {
                         if (snapshot.exists())
                         {
                             username = snapshot.val().username;
+                            color = snapshot.val().color;
                             console.log(snapshot.val().username);
                         }
                         //appends the message once the username is fetched
-                        messageItem.innerText = username+": "+messageData.message;
+                        const usernameDiv = document.createElement("div");
+                        usernameDiv.classList.add("username");
+                        usernameDiv.innerText = username+":";
+                        usernameDiv.style.color = "#"+color;
+                        messageItem.appendChild(usernameDiv);
+                        //appends message content
+                        const messageContent = document.createElement("div");
+                        messageContent.classList.add("message-content");
+                        messageContent.innerText = queryData.message;
+                        messageItem.appendChild(messageContent);
+
+                        //adds timestamp
+                        const messageTime = document.createElement("div");
+                        messageTime.classList.add("chat-time");
+                        messageTime.innerText = new Date(queryData.timestamp).toLocaleString();
+                        messageItem.appendChild(messageTime);
                         messageList.insertBefore(messageItem, messageList.firstChild);
 
                         // Adjust scroll position to maintain view
