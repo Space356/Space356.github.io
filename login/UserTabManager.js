@@ -22,23 +22,16 @@ const auth = getAuth(app);
 
 const sign_out_button = document.getElementById("sign_out");
 
+let uid = null;
 onAuthStateChanged(auth, (user) =>
 {
     if (user)
     {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/auth.user
-        const uid = user.uid;
         // ...
-        get(ref(db, 'users/' + uid)).then((snapshot) =>
-        {
-            if (snapshot.exists())
-            {
-                console.log("User is signed in: " + uid);
-                console.log(snapshot.val());
-                document.getElementById("curr_user").innerHTML = "<h1>"+snapshot.val().username+"</h1><h2>"+user.email+"</h2>";
-            }
-        });
+        uid = user.uid;
+        load_user(user);
     }
     else
     {
@@ -46,21 +39,79 @@ onAuthStateChanged(auth, (user) =>
         console.log("Signed Out");
         document.getElementById("curr_user").innerHTML = "<h1>Not Signed In</h1>";
         sign_out_button.innerHTML = "Log In";
+        uid = null;
     }
 });
 
 sign_out_button.addEventListener('click', function(e)
 {
     e.preventDefault();
-    auth.signOut().then(() =>
+    if(uid == null)
+    {
+        window.location.href = "/login/index.html";
+    }
+    else
+    {
+        auth.signOut().then(() =>
     {
         // Sign-out successful.
         console.log("Signed Out");
         document.getElementById("curr_user").innerHTML = "<h1>Not Signed In</h1>";
         sign_out_button.innerHTML = "Log In";
-    }).catch((error) =>
-    {
-        // An error happened.
-        console.log("Error signing out: "+error);
-    });
+        }).catch((error) =>
+        {
+            // An error happened.
+            console.log("Error signing out: "+error);
+        });
+    }
 });
+
+const profile_button = document.getElementById("profile_button");
+const profile_menu = document.getElementById("profile_menu");
+
+profile_button.addEventListener('click', function(e)
+{
+    e.preventDefault();
+    profile_menu.classList.toggle("hidden");
+});
+
+const username_input = document.getElementById("username");
+const color_input = document.getElementById("usercolor");
+
+username_input.addEventListener('change', function(e)
+{
+    e.preventDefault();
+    const user = auth.currentUser;
+    if (user)
+    {
+        set(ref(db, 'users/' + user.uid + '/username'), username_input.value);
+        load_user(user);
+    }
+});
+
+color_input.addEventListener('change', function(e)
+{
+    e.preventDefault();
+    const user = auth.currentUser;
+    if (user)
+    {
+        set(ref(db, 'users/' + user.uid + '/color'), color_input.value);
+        load_user(user);
+    }
+});
+
+function load_user(user)
+{
+    get(ref(db, 'users/' + uid)).then((snapshot) =>
+    {
+        if (snapshot.exists())
+        {
+            console.log("User is signed in: " + uid);
+            console.log(snapshot.val());
+            document.getElementById("curr_user").innerHTML = '<h1 style="color : '+snapshot.val().color+';">'+snapshot.val().username+"</h1><h2>"+user.email+"</h2>";
+            color_input.value = snapshot.val().color;
+            username_input.value = snapshot.val().username;
+            sign_out_button.innerHTML = "Sign Out";
+        }
+    });
+}

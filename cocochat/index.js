@@ -36,7 +36,7 @@ onAuthStateChanged(auth, (user) =>
     {
         uid = user.uid;
         //add to members list
-        set(ref(db, 'chats/' + chat_id + '/members/' + uid), true);
+        //set(ref(db, 'chats/' + chat_id + '/members/' + uid), true);
         set(ref(db, 'users/'+uid+'/cocochat/savedChats/'+chat_id), true);
         loadSavedChats();
     }
@@ -221,7 +221,7 @@ onChildAdded(queriesRef, (data) =>
     console.log("New message added with key (Also latest message): ", latest_message);
     //get username from uid
     let username = "nada";
-    let color = "FFFFFF";
+    let color = "#FFFFFF";
     get(ref(db, 'users/' + queryData.user)).then((snapshot) =>
     {
         if (snapshot.exists())
@@ -240,7 +240,7 @@ onChildAdded(queriesRef, (data) =>
         const usernameDiv = document.createElement("div");
         usernameDiv.classList.add("username");
         usernameDiv.innerText = username+":";
-        usernameDiv.style.color = "#"+color;
+        usernameDiv.style.color = color;
         messageItem.appendChild(usernameDiv);
         //appends message content
         const messageContent = document.createElement("div");

@@ -115,7 +115,7 @@ body
 }
 .message_input
 {
-    width : 75%;
+    width : 60%;
     padding: 10px;
     font-size: 16px;
     border: solid 4px white;
@@ -217,4 +217,12 @@ a
     transform: translateY(-50%);
     padding-left: 16px;
     width : 128px;
+}
+#accounttab
+{
+position: fixed;
+bottom: 0px;
+left:0px;
+width: 300px;
+z-index: 1000;
 }

@@ -2,14 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/login/style2.css">
-    <script type="module" src="UserTabManager.js"></script>
+    <link rel="stylesheet" type="text/css" href="../login/style2.css">
 </head>
-    <body>
-        <div>
+    <body onload="loadUserTab()">
+        <div class="main_div_acc">
             <div id="curr_user">Not Signed In</div>
-            <button id="sign_out">Sign Out</button>
+            <button class="profile_button" id="profile_button">^</button>
+            <div id="profile_menu" class="profile_menu hidden">
+                <input type="text" id="username" placeholder="Username">
+                <input type="color" id="usercolor" value="#ffffff">
+                <button id="sign_out">Sign Out</button>
+            </div>
         </div>
     </body>
 </html>

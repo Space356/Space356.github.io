@@ -101,7 +101,7 @@ function signUp()
         notebook : "pending",
         cocobrowse : "pending",
         cocochat : "pending",
-        color : "FFFFFF"
+        color : "#FFFFFF"
       });
       alert('Sign Up Successful! Now log in with your new account.');
       //window.location.href = "/login/AccountTab.html";
@@ -109,7 +109,6 @@ function signUp()
     {
       alert('Error signing up:', error.message);
     });
-    
 }
 
 function logIn()
@@ -120,7 +119,7 @@ function logIn()
     {
       const user = userCredential.user;
       console.log('Log In Successful:', user);
-      window.location.href = "/login/AccountTab.html";
+      window.location.href = "/index.html";
     }).catch((error) =>
     {
       alert('Error logging in:', error.message);
