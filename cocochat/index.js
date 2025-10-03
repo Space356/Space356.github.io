@@ -132,15 +132,17 @@ send_button.addEventListener("click", function(e)
     if(uid != "nada")
     {
         const message_input = document.getElementById("message_input")
-        let message = message_input.value;
-        message = "cha";
+        const message = message_input.value;
+        const lower_message = message.toLowerCase()+" ";
+
         //basic profanity filter
-        //
-        if((message.includes("ni") && message.includes("ig") && (message.includes("er") || message.includes("ga"))))
+        //Don't mind this. The autofill did it for me.
+        if((lower_message.includes("ni") && lower_message.includes("ig") && (lower_message.includes("er") || lower_message.includes("ga"))) || lower_message.includes("ni ")|| lower_message.includes("igga") || lower_message.includes("nig ") || lower_message.includes("nig,") || lower_message.includes("nig.") || lower_message.includes("nig;") || lower_message.includes("nig:"))
         {
             alert("Your message was blocked by the profanity filter... Bardia.");
             return;
         }
+
         if (message.trim() === "")
         {
             return; // Don't send empty messages
@@ -302,7 +304,8 @@ function loadOlderMessages()
             // Clear the existing messages
             //const messageList = document.getElementById("message_list");
             //messageList.innerHTML = "";
-            oldest_message = orderedMessages[0].key;
+            oldest_message = Object.keys(olderMessages)[0];
+            console.log("Oldest message key: ", oldest_message);
                 for (let i = 0; i < orderedMessages.length; i++)
                 {
                     const messageData = orderedMessages[i];
@@ -310,7 +313,7 @@ function loadOlderMessages()
 
                     //get username from uid
                     let username = "nada";
-                    let color = "FFFFFF";
+                    let color = "#FFFFFF";
                     get(ref(db, 'users/' + messageData.user)).then((snapshot) =>
                     {
                         if (snapshot.exists())
@@ -323,7 +326,7 @@ function loadOlderMessages()
                         const usernameDiv = document.createElement("div");
                         usernameDiv.classList.add("username");
                         usernameDiv.innerText = username+":";
-                        usernameDiv.style.color = "#"+color;
+                        usernameDiv.style.color = color;
                         messageItem.appendChild(usernameDiv);
                         //appends message content
                         const messageContent = document.createElement("div");
