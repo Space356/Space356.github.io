@@ -36,9 +36,17 @@ onAuthStateChanged(auth, (user) =>
     {
         uid = user.uid;
         //add to members list
-        //set(ref(db, 'chats/' + chat_id + '/members/' + uid), true);
-        set(ref(db, 'users/'+uid+'/cocochat/savedChats/'+chat_id), true);
-        loadSavedChats();
+        get(ref(db, 'chats/' + chat_id)).then((snapshot) =>
+        {
+            if (snapshot.exists())
+            {
+                set(ref(db, 'chats/' + chat_id + '/members/' + uid), true);
+                loadSavedChats();
+            }
+        }).catch((error) =>
+        {
+            console.error("Error adding user to members list: ", error);
+        });
     }
     console.log("User ID: "+uid);
 });
@@ -124,7 +132,15 @@ send_button.addEventListener("click", function(e)
     if(uid != "nada")
     {
         const message_input = document.getElementById("message_input")
-        const message = message_input.value;
+        let message = message_input.value;
+        message = "cha";
+        //basic profanity filter
+        //
+        if((message.includes("ni") && message.includes("ig") && (message.includes("er") || message.includes("ga"))))
+        {
+            alert("Your message was blocked by the profanity filter... Bardia.");
+            return;
+        }
         if (message.trim() === "")
         {
             return; // Don't send empty messages
