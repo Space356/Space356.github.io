@@ -132,16 +132,7 @@ send_button.addEventListener("click", function(e)
     if(uid != "nada")
     {
         const message_input = document.getElementById("message_input")
-        const message = message_input.value;
-        const lower_message = message.toLowerCase()+" ";
-
-        //basic profanity filter
-        //Don't mind this. The autofill did it for me.
-        if((lower_message.includes("ni") && lower_message.includes("ig") && (lower_message.includes("er") || lower_message.includes("ga"))) || lower_message.includes("ni ")|| lower_message.includes("igga") || lower_message.includes("nig ") || lower_message.includes("nig,") || lower_message.includes("nig.") || lower_message.includes("nig;") || lower_message.includes("nig:"))
-        {
-            alert("Your message was blocked by the profanity filter... Bardia.");
-            return;
-        }
+        const message = profanityCleaner.clean(message_input.value);
 
         if (message.trim() === "")
         {
