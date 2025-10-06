@@ -13,7 +13,7 @@
         <div id="container">
 
             <ul class="message_list" id="message_list"></ul>
-            <input type="text" class="title" id="title" placeholder="Click here to name this chat"></input>
+            <input type="text" maxlength="40" class="title" id="title" placeholder="Click here to name this chat"></input>
             <div id="saved_chats">
                 <h2>Saved Chats</h2>
                 <ul id="saved_chats_list" class="chatlist">
@@ -21,7 +21,7 @@
                 </ul>
             </div>
             <form class="sendbox" id="message-form">
-                <input class="message_input" type="text" id="message_input" placeholder="Message" autocomplete="off" required />
+                <input class="message_input" type="text" maxlength="1000" id="message_input" placeholder="Message" autocomplete="off" required />
                 <button class="send_button" type="submit" id="send_button">Send</button>
             </form>
         </div>
