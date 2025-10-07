@@ -73,6 +73,26 @@ get(ref(db, 'chats/' + chat_id)).then((snapshot) =>
         const chatData = snapshot.val();
         document.getElementById("title").value = chatData.name;
         console.log(chatData.name);
+
+        console.log("Loading Members: ", chatData.members);
+        const membersList = document.getElementById("members_list");
+        membersList.innerHTML = ""; // Clear existing members
+        for (const memberId in chatData.members)
+        {
+            get(ref(db, 'users/' + memberId)).then((userSnapshot) =>
+            {
+                if (userSnapshot.exists())
+                {
+                    const userData = userSnapshot.val();
+                    const memberItem = document.createElement("li");
+                    memberItem.innerText = userData.username || "Nada";
+                    memberItem.style.color = userData.color || "#FFFFFF";
+                    memberItem.style.fontWeight = "bold";
+                    membersList.appendChild(memberItem);
+                    console.log("Loaded member: ", userData.username);
+                }
+            });
+        }
     }
     else
     {
@@ -104,10 +124,14 @@ function loadSavedChats()
                     if (chatSnapshot.exists())
                     {
                         const chatData = chatSnapshot.val();
-                        const chatLink = document.createElement("a");
+                        const chatLink = document.createElement("b");
                         chatLink.href = "index.html?chatid=" + chatKey;
                         chatLink.innerText = chatData.name;
                         const listItem = document.createElement("li");
+                        listItem.addEventListener('click', () =>
+                        {
+                            window.location.href = "index.html?chatid=" + chatKey;
+                        });
                         listItem.appendChild(chatLink);
                         savedChatsList.appendChild(listItem);
                         console.log("Loaded saved chat: ", chatData.name);
@@ -132,7 +156,7 @@ send_button.addEventListener("click", function(e)
     if(uid != "nada")
     {
         const message_input = document.getElementById("message_input")
-        const message = profanityCleaner.clean(message_input.value);
+        const message = profanityCleaner.clean(message_input.value.slice(0, 1000));
 
         if (message.trim() === "")
         {
@@ -360,7 +384,7 @@ messageList.addEventListener("scroll", () =>
 const titleElement = document.getElementById("title");
 titleElement.addEventListener("blur", () =>
 {
-    const newTitle = titleElement.value.trim();
+    const newTitle = titleElement.value.slice(0,40).trim();
     if (newTitle.length > 0)
     {
         set(ref(db, 'chats/' + chat_id+"/name"),newTitle).then(() =>

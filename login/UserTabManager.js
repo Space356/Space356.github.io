@@ -84,7 +84,7 @@ username_input.addEventListener('change', function(e)
     const user = auth.currentUser;
     if (user)
     {
-        set(ref(db, 'users/' + user.uid + '/username'), username_input.value);
+        set(ref(db, 'users/' + user.uid + '/username'), username_input.value.slice(0, 20));
         load_user(user);
     }
 });

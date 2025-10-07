@@ -6,24 +6,32 @@
         <link rel="stylesheet" href="style.css">
         <script src="https://cdn.jsdelivr.net/npm/profanity-cleaner@latest"></script>
         <script src="index.js" type="module"></script>
-        <!--<script src="../eek.js"></script>-->
+        <script src="../eek.js"></script>
     </head>
     <body>
-        <!--<div id="accounttab"></div>-->
+        <div id="accounttab"></div>
         <div id="container">
 
             <ul class="message_list" id="message_list"></ul>
-            <input type="text" maxlength="40" class="title" id="title" placeholder="Click here to name this chat"></input>
-            <div id="saved_chats">
+            <form class="sendbox" id="message-form">
+                <input class="message_input" type="text" maxlength="1000" id="message_input" placeholder="Message" autocomplete="off" required />
+                <button class="send_button" type="submit" id="send_button">Send</button>
+            </form>
+            <div id="chat_sidebar">
+                <div id="saved_chats">
                 <h2>Saved Chats</h2>
                 <ul id="saved_chats_list" class="chatlist">
                     <!-- Saved chats will be loaded here -->
                 </ul>
             </div>
-            <form class="sendbox" id="message-form">
-                <input class="message_input" type="text" maxlength="1000" id="message_input" placeholder="Message" autocomplete="off" required />
-                <button class="send_button" type="submit" id="send_button">Send</button>
-            </form>
+            <div id="members">
+                <h2>Members</h2>
+                <ul id="members_list" class="chatlist">
+                    <!-- Members will be loaded here -->
+                </ul>
+            </div>
+            </div>
         </div>
+        <input type="text" maxlength="40" class="title" id="title" placeholder="Click here to name this chat"></input>
     </body>
 </html>

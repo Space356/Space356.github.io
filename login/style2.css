@@ -37,8 +37,9 @@
     font-size: 18px;
     padding: 8px;
     cursor: pointer;
-    width: 48px;
-    height: 48px;
+    width: 42px;
+    height: 42px;
+    margin: 4px;
 }
 .profile_button:hover
 {
