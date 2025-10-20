@@ -50,6 +50,7 @@ body
     margin-right: 8px;
     flex-shrink: 0;
     width : auto;
+    max-width: 30%;
 }
 
 .message-content
