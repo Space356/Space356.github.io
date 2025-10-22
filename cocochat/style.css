@@ -248,3 +248,8 @@ left:4px;
 width: 300px;
 z-index: 1000;
 }
+a
+{
+    color:blue;
+    text-decoration: underline;
+}

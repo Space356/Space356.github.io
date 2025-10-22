@@ -268,27 +268,7 @@ onChildAdded(queriesRef, (data) =>
         {
             scrollToBottom = true;
         }
-        //appends the message once the username is fetched
-        //messageItem.innerHTML = '<div class="username">'+username+':</div>'
-        const usernameDiv = document.createElement("div");
-        usernameDiv.classList.add("username");
-        usernameDiv.innerText = username+":";
-        usernameDiv.style.color = color;
-        messageItem.appendChild(usernameDiv);
-        //appends message content
-        const messageContent = document.createElement("div");
-        messageContent.classList.add("message-content");
-        messageContent.innerText = queryData.message;
-        messageItem.appendChild(messageContent);
-
-        //adds timestamp
-        const messageTime = document.createElement("div");
-        messageTime.classList.add("chat-time");
-        messageTime.innerText = new Date(queryData.timestamp).toLocaleString();
-        messageItem.appendChild(messageTime);
-
-        //finally appends the message
-        messageList.appendChild(messageItem);
+        append_message(messageItem, username, color, queryData,true);
 
         if(scrollToBottom)
         {
@@ -337,25 +317,7 @@ function loadOlderMessages()
                             color = snapshot.val().color;
                             console.log(snapshot.val().username);
                         }
-                        //appends the message once the username is fetched
-                        const usernameDiv = document.createElement("div");
-                        usernameDiv.classList.add("username");
-                        usernameDiv.innerText = username+":";
-                        usernameDiv.style.color = color;
-                        messageItem.appendChild(usernameDiv);
-                        //appends message content
-                        const messageContent = document.createElement("div");
-                        messageContent.classList.add("message-content");
-                        messageContent.innerText = messageData.message;
-                        messageItem.appendChild(messageContent);
-
-                        //adds timestamp
-                        const messageTime = document.createElement("div");
-                        messageTime.classList.add("chat-time");
-                        messageTime.innerText = new Date(messageData.timestamp).toLocaleString();
-                        messageItem.appendChild(messageTime);
-                        messageList.insertBefore(messageItem, messageList.firstChild);
-
+                        append_message(messageItem, username, color, messageData);
                         // Adjust scroll position to maintain view
                         messageList.scrollTop = messageList.scrollHeight - scrollHeightBefore;
                     });
@@ -404,3 +366,53 @@ titleElement.addEventListener("keydown", (e) =>
         titleElement.blur();
     }
 });
+
+function append_message(messageItem, username, color, messageData,at_end = false)
+{
+    //appends the message once the username is fetched
+    const usernameDiv = document.createElement("div");
+    usernameDiv.classList.add("username");
+    usernameDiv.innerText = username+":";
+    usernameDiv.style.color = color;
+    messageItem.appendChild(usernameDiv);
+
+    //appends message content
+    const messageContent = document.createElement("div");
+    messageContent.classList.add("message-content");
+    messageContent.innerText = messageData.message;
+    messageItem.appendChild(messageContent);
+
+    //convert URLs to clickable links
+    const urls = messageContent.innerText.match(/(https?:\/\/[^\s]+)/g);
+    if(urls != null)
+    {
+        for(let i = 0; i < urls.length; i++)
+        {
+            console.log("URL: ", urls[i]);
+            if(/\.(jpg|jpeg|png|webp|avif|gif|svg)$/i.test(urls[i]))
+            {
+                messageContent.innerHTML = messageContent.innerText.replace(urls[i], '<a href="'+urls[i]+'" target="_blank"><img src="'+urls[i]+'" alt="Image" style="max-width:200px; max-height:200px;"></a>');
+                continue;
+            }
+            else
+            {
+                messageContent.innerHTML = messageContent.innerText.replace(urls[i], '<a href="'+urls[i]+'" target="_blank">'+urls[i]+'</a>');
+            }
+        }
+    }
+
+    //adds timestamp
+    const messageTime = document.createElement("div");
+    messageTime.classList.add("chat-time");
+    messageTime.innerText = new Date(messageData.timestamp).toLocaleString();
+    messageItem.appendChild(messageTime);
+
+    if(at_end)
+    {
+        messageList.appendChild(messageItem);
+    }
+    else
+    {
+        messageList.insertBefore(messageItem, messageList.firstChild);
+    }
+}
