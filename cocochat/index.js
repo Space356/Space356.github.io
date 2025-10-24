@@ -40,7 +40,8 @@ onAuthStateChanged(auth, (user) =>
         {
             if (snapshot.exists())
             {
-                set(ref(db, 'chats/' + chat_id + '/members/' + uid), true);
+                set(ref(db, 'chats/' + chat_id + '/members/' + uid), true); //Adds user to members list.
+                set(ref(db, 'users/' + uid + '/cocochat/savedChats'), true); //Does saved chat thing.
                 loadSavedChats();
             }
         }).catch((error) =>
