@@ -48,6 +48,10 @@ onAuthStateChanged(auth, (user) =>
             console.error("Error adding user to members list: ", error);
         });
     }
+    else
+    {
+        uid = "nada";
+    }
     console.log("User ID: "+uid);
 });
 
