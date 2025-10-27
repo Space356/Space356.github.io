@@ -108,7 +108,18 @@ function load_user(user)
         {
             console.log("User is signed in: " + uid);
             console.log(snapshot.val());
-            document.getElementById("curr_user").innerHTML = '<h1 style="color : '+snapshot.val().color+';">'+snapshot.val().username+"</h1><h2>"+user.email+"</h2>";
+            let style_val = "";
+            const color_split = snapshot.val().color.split(",");
+            if(color_split.length > 1)
+            {
+                //usernameDiv.style = "background: linear-gradient(90deg, "+color[0]+","+color[0]+", "+color[1]+"); -webkit-background-clip: text; -webkit-text-fill-color: transparent;";
+                style_val = "background: linear-gradient(to right, "+color_split[0]+","+color_split[1]+"); -webkit-background-clip: text; background-clip: text; color: transparent;";
+            }
+            else
+            {
+                style_val = 'color : '+snapshot.val().color+';';
+            }
+            document.getElementById("curr_user").innerHTML = '<h1 style="'+style_val+'">'+snapshot.val().username+"</h1><h2>"+user.email+"</h2>";
             color_input.value = snapshot.val().color;
             username_input.value = snapshot.val().username;
             sign_out_button.innerHTML = "Sign Out";

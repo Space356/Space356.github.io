@@ -42,7 +42,7 @@ onAuthStateChanged(auth, (user) =>
             {
                 const entry_granted = snapshot.val().members && snapshot.val().members[user.uid];
                 console.log("Entry state for "+uid+": ", entry_granted);
-                if(!entry_granted && snapshot.val().password != "")
+                if(!entry_granted && snapshot.val().password != "" && snapshot.val().password.exists())
                 {
                     let inpt = prompt("Enter Password:");
 
@@ -396,7 +396,16 @@ function append_message(messageItem, username, color, messageData,at_end = false
     const usernameDiv = document.createElement("div");
     usernameDiv.classList.add("username");
     usernameDiv.innerText = username+":";
-    usernameDiv.style.color = color;
+    const color_split = color.split(",");
+    if(color_split.length > 1)
+    {
+        //usernameDiv.style = "background: linear-gradient(90deg, "+color[0]+","+color[0]+", "+color[1]+"); -webkit-background-clip: text; -webkit-text-fill-color: transparent;";
+        usernameDiv.style = "background: linear-gradient(to right, "+color_split[0]+","+color_split[1]+"); -webkit-background-clip: text; background-clip: text; color: transparent;";
+    }
+    else
+    {
+        usernameDiv.style.color = color;
+    }
     messageItem.appendChild(usernameDiv);
 
     //appends message content
