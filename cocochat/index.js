@@ -40,8 +40,22 @@ onAuthStateChanged(auth, (user) =>
         {
             if (snapshot.exists())
             {
+                const entry_granted = snapshot.val().members && snapshot.val().members[user.uid];
+                console.log("Entry state for "+uid+": ", entry_granted);
+                if(!entry_granted && snapshot.val().password != "")
+                {
+                    let inpt = prompt("Enter Password:");
+
+                    while(inpt !== snapshot.val().password /*&& snapshot.val().members[user.uid] != true*/)
+                    {
+                        inpt = prompt("Try Again:");
+                    }
+                }
+                //only shows up once password is correct
+                load_everything();
+
                 set(ref(db, 'chats/' + chat_id + '/members/' + uid), true); //Adds user to members list.
-                set(ref(db, 'users/' + uid + '/cocochat/savedChats'), true); //Does saved chat thing.
+                set(ref(db, 'users/' + uid + '/cocochat/savedChats/'+chat_id), true); //Does saved chat thing.
                 loadSavedChats();
             }
         }).catch((error) =>
@@ -70,46 +84,6 @@ else
 }
 
 let chat_id = temp_id; // make this changable later.
-
-get(ref(db, 'chats/' + chat_id)).then((snapshot) =>
-{
-    if (snapshot.exists())
-    {
-        const chatData = snapshot.val();
-        document.getElementById("title").value = chatData.name;
-        console.log(chatData.name);
-
-        console.log("Loading Members: ", chatData.members);
-        const membersList = document.getElementById("members_list");
-        membersList.innerHTML = ""; // Clear existing members
-        for (const memberId in chatData.members)
-        {
-            get(ref(db, 'users/' + memberId)).then((userSnapshot) =>
-            {
-                if (userSnapshot.exists())
-                {
-                    const userData = userSnapshot.val();
-                    const memberItem = document.createElement("li");
-                    memberItem.innerText = userData.username || "Nada";
-                    memberItem.style.color = userData.color || "#FFFFFF";
-                    memberItem.style.fontWeight = "bold";
-                    membersList.appendChild(memberItem);
-                    console.log("Loaded member: ", userData.username);
-                }
-            });
-        }
-    }
-    else
-    {
-        console.log("No chat data found.");
-        chat_id = "12345678"; // reset to default chat ID if not found
-        alert("Chat ID not found. Redirecting to default chat.");
-        window.location.href = "index.html?chatid="+chat_id;
-    }
-}).catch((error) =>
-{
-    console.error("Error fetching chat data: ", error);
-});
 
 console.log("Chat ID: "+chat_id);
 
@@ -154,41 +128,121 @@ function loadSavedChats()
     });
 }
 
-//message sending
-send_button.addEventListener("click", function(e)
+function load_everything()
 {
-    e.preventDefault();
-    if(uid != "nada")
+    get(ref(db, 'chats/' + chat_id)).then((snapshot) =>
     {
-        const message_input = document.getElementById("message_input")
-        const message = profanityCleaner.clean(message_input.value.slice(0, 1000));
+        if (snapshot.exists())
+        {
+            const chatData = snapshot.val();
+            document.getElementById("title").value = chatData.name;
+            console.log(chatData.name);
 
-        if (message.trim() === "")
-        {
-            return; // Don't send empty messages
+            console.log("Loading Members: ", chatData.members);
+            const membersList = document.getElementById("members_list");
+            membersList.innerHTML = ""; // Clear existing members
+            for (const memberId in chatData.members)
+            {
+                get(ref(db, 'users/' + memberId)).then((userSnapshot) =>
+                {
+                    if (userSnapshot.exists())
+                    {
+                        const userData = userSnapshot.val();
+                        const memberItem = document.createElement("li");
+                        memberItem.innerText = userData.username || "Nada";
+                        memberItem.style.color = userData.color || "#FFFFFF";
+                        memberItem.style.fontWeight = "bold";
+                        membersList.appendChild(memberItem);
+                        console.log("Loaded member: ", userData.username);
+                    }
+                });
+            }
         }
-        //push message to firebase
-        set(push(ref(db, 'chats/'+chat_id+"/messages")), {
-            message: message,
-            user: uid,
-            timestamp: Date.now()
-        }).then(() =>
+        else
         {
-            // Data saved successfully!
-            console.log("Message sent!");
-            message_input.value = "";
-        })
-        .catch((error) =>
-        {
-            // The write failed...
-            console.error("Error sending message: ", error);
-        })
-    }
-    else
+            console.log("No chat data found.");
+            chat_id = "12345678"; // reset to default chat ID if not found
+            alert("Chat ID not found. Redirecting to default chat.");
+            window.location.href = "index.html?chatid="+chat_id;
+        }
+    }).catch((error) =>
     {
-        alert("You must be logged in to send messages. Go here to do that: https://space356hosting.github.io/login/");
-    }
-});
+        console.error("Error fetching chat data: ", error);
+    });
+
+    //message sending
+    send_button.addEventListener("click", function(e)
+    {
+        e.preventDefault();
+        if(uid != "nada")
+        {
+            const message_input = document.getElementById("message_input")
+            const message = profanityCleaner.clean(message_input.value.slice(0, 1000));
+
+            if (message.trim() === "")
+            {
+                return; // Don't send empty messages
+            }
+            //push message to firebase
+            set(push(ref(db, 'chats/'+chat_id+"/messages")), {
+                message: message,
+                user: uid,
+                timestamp: Date.now()
+            }).then(() =>
+            {
+                // Data saved successfully!
+                console.log("Message sent!");
+                message_input.value = "";
+            })
+            .catch((error) =>
+            {
+                // The write failed...
+                console.error("Error sending message: ", error);
+            })
+        }
+        else
+        {
+            alert("You must be logged in to send messages. Go here to do that: https://space356hosting.github.io/login/");
+        }
+    });
+
+    onChildAdded(queriesRef, (data) =>
+    {
+        const queryData = data.val();
+        const messageItem = document.createElement("li");
+
+        if (oldest_message === null)
+        {
+            oldest_message = data.key;
+            console.log("Oldest message set to: ", oldest_message);
+        }
+        latest_message = data.key;
+        console.log("New message added with key (Also latest message): ", latest_message);
+        //get username from uid
+        let username = "nada";
+        let color = "#FFFFFF";
+        get(ref(db, 'users/' + queryData.user)).then((snapshot) =>
+        {
+            if (snapshot.exists())
+            {
+                username = snapshot.val().username;
+                color = snapshot.val().color;
+                console.log(snapshot.val().username);
+            }
+            let scrollToBottom = false;
+            if(messageItem.scrollTop + messageItem.clientHeight >= messageItem.scrollHeight)
+            {
+                scrollToBottom = true;
+            }
+            append_message(messageItem, username, color, queryData,true);
+
+            if(scrollToBottom)
+            {
+                messageList.scrollTop = messageList.scrollHeight;
+            }
+        });
+    });
+}
 
 const messageList = document.getElementById("message_list");
 
@@ -245,42 +299,6 @@ const queriesRef = query(ref(db, 'chats/'+chat_id+"/messages"), orderByKey() ,li
         console.log("No queries found.");
     }
 });*/
-onChildAdded(queriesRef, (data) =>
-{
-    const queryData = data.val();
-    const messageItem = document.createElement("li");
-
-    if (oldest_message === null)
-    {
-        oldest_message = data.key;
-        console.log("Oldest message set to: ", oldest_message);
-    }
-    latest_message = data.key;
-    console.log("New message added with key (Also latest message): ", latest_message);
-    //get username from uid
-    let username = "nada";
-    let color = "#FFFFFF";
-    get(ref(db, 'users/' + queryData.user)).then((snapshot) =>
-    {
-        if (snapshot.exists())
-        {
-            username = snapshot.val().username;
-            color = snapshot.val().color;
-            console.log(snapshot.val().username);
-        }
-        let scrollToBottom = false;
-        if(messageItem.scrollTop + messageItem.clientHeight >= messageItem.scrollHeight)
-        {
-            scrollToBottom = true;
-        }
-        append_message(messageItem, username, color, queryData,true);
-
-        if(scrollToBottom)
-        {
-            messageList.scrollTop = messageList.scrollHeight;
-        }
-    });
-});
 
 function loadOlderMessages()
 {
@@ -339,7 +357,7 @@ function loadOlderMessages()
 }
 messageList.addEventListener("scroll", () =>
 {
-    console.log("Scroll position: ", messageList.scrollTop);
+    //console.log("Scroll position: ", messageList.scrollTop);
     if (messageList.scrollTop === 0)
     {
         console.log("Loading older messages.");
