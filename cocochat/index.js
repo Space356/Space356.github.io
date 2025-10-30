@@ -390,7 +390,7 @@ titleElement.addEventListener("keydown", (e) =>
     }
 });
 
-async function append_message(messageItem, username, color, messageData,at_end = false)
+function append_message(messageItem, username, color, messageData,at_end = false)
 {
     //appends the message once the username is fetched
     const usernameDiv = document.createElement("div");
@@ -421,7 +421,7 @@ async function append_message(messageItem, username, color, messageData,at_end =
         for(let i = 0; i < urls.length; i++)
         {
             console.log("URL: ", urls[i]);
-            await image_detect(urls[i]).then((isImage) => 
+            image_detect(urls[i]).then((isImage) => 
             {
                 if(isImage)
                 {
