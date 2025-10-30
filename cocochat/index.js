@@ -390,7 +390,7 @@ titleElement.addEventListener("keydown", (e) =>
     }
 });
 
-function append_message(messageItem, username, color, messageData,at_end = false)
+async function append_message(messageItem, username, color, messageData,at_end = false)
 {
     //appends the message once the username is fetched
     const usernameDiv = document.createElement("div");
@@ -421,15 +421,17 @@ function append_message(messageItem, username, color, messageData,at_end = false
         for(let i = 0; i < urls.length; i++)
         {
             console.log("URL: ", urls[i]);
-            if(/\.(jpg|jpeg|png|webp|avif|gif|svg)$/i.test(urls[i]))
+            await image_detect(urls[i]).then((isImage) => 
             {
-                messageContent.innerHTML = messageContent.innerText.replace(urls[i], '<a href="'+urls[i]+'" target="_blank"><img src="'+urls[i]+'" alt="Image" style="max-width:200px; max-height:200px;"></a>');
-                continue;
-            }
-            else
-            {
-                messageContent.innerHTML = messageContent.innerText.replace(urls[i], '<a href="'+urls[i]+'" target="_blank">'+urls[i]+'</a>');
-            }
+                if(isImage)
+                {
+                    messageContent.innerHTML = messageContent.innerText.replace(urls[i], '<a href="'+urls[i]+'" target="_blank"><img src="'+urls[i]+'" alt="Image" style="max-width:200px; max-height:200px;"></a>');
+                }
+                else
+                {
+                    messageContent.innerHTML = messageContent.innerText.replace(urls[i], '<a href="'+urls[i]+'" target="_blank">'+urls[i]+'</a>');
+                }
+            });
         }
     }
 
@@ -447,4 +449,15 @@ function append_message(messageItem, username, color, messageData,at_end = false
     {
         messageList.insertBefore(messageItem, messageList.firstChild);
     }
+}
+
+async function image_detect(url)
+{
+    return new Promise((resolve) =>
+    {
+        const img = new Image();
+        img.onload = () => resolve(true); //Is Image
+        img.onerror = () => resolve(false); //Is Not Image
+        img.src = url;
+    });
 }
