@@ -42,7 +42,7 @@ onAuthStateChanged(auth, (user) =>
             {
                 const entry_granted = snapshot.val().members && snapshot.val().members[user.uid];
                 console.log("Entry state for "+uid+": ", entry_granted);
-                if(!entry_granted && snapshot.val().password != "" && snapshot.val().password.exists())
+                if(!entry_granted && snapshot.val().password != "" && snapshot.val().password != null)
                 {
                     let inpt = prompt("Enter Password:");
 
