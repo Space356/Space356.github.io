@@ -256,3 +256,32 @@ a
     color:blue;
     text-decoration: underline;
 }
+
+@media screen and (max-width: 800px) {
+    .message_list
+    {
+        width: calc(100% - 16px);
+        padding: 32px 8px 128px 8px;
+    }
+    .message_list.li
+    {
+        margin-left: 16px;
+    }
+    .message_input
+    {
+        width: calc(100% - 128px);
+        margin-left: 8px;
+    }
+    .send_button
+    {
+        margin-right: 8px;
+    }
+    #chat_sidebar
+    {
+        display: none;
+    }
+    #accounttab
+    {
+        display: none;
+    }
+}

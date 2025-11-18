@@ -5,7 +5,7 @@ widget_array =
     '<h1 class="time_text anims" name="time"></h1><br><h2 class="time_text font_smaller anims" name="datehtml"></h2><div style="position: absolute; bottom : 0px; width:100%; height:50%;">'+weather_string+'</div>',
     '<iframe class="iframe_widget" src="/notebook/?transparent=yes"/>',
     '<iframe id="iframe_widget_left" src=""/>',
-    'to-do list',
+    '<iframe class="iframe_widget" src="/cocochat"/>',
     '<iframe class="iframe_widget" id="iframe_widget_right" src=""/>'
 ];
 option_array =
@@ -14,7 +14,7 @@ option_array =
     'These are otions for time and weather.',
     'These are options for the notebook.',
     'URL: <input type="url" placeholder="url" id="iframe_url_left" onchange="set_iframe_url(\'left\')"><br>Zoom: <input type="range" min="0.1" max="2" step="0.1" value="0.65" id="iframe_zoom_left" onchange="set_iframe_url(\'left\')">',
-    'These are options for the to-do list.',
+    'These are options for cocochat. Will consist of prefered chat id stuff.',
     'URL: <input type="url" placeholder="url" id="iframe_url_right" onchange="set_iframe_url(\'right\')"><br>Zoom: <input type="range" min="0.1" max="2" step="0.1" value="0.65" id="iframe_zoom_right" onchange="set_iframe_url(\'right\')">'
 ]
 
