@@ -20,7 +20,6 @@
     <body>
         <div id="accounttab"></div>
         <div id="container">
-
             <ul class="message_list" id="message_list"></ul>
             <form class="sendbox" id="message-form">
                 <input class="message_input" type="text" maxlength="1000" id="message_input" placeholder="Message" autocomplete="off" required />
@@ -29,6 +28,7 @@
             <div id="chat_sidebar">
                 <div id="saved_chats">
                 <h2>Saved Chats</h2>
+                <button onclick="create_new_chat()" class="new_chat">+ New Chat</button>
                 <ul id="saved_chats_list" class="chatlist">
                     <!-- Saved chats will be loaded here -->
                 </ul>

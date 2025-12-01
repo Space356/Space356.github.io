@@ -48,7 +48,17 @@ onAuthStateChanged(auth, (user) =>
 
                     while(inpt !== snapshot.val().password /*&& snapshot.val().members[user.uid] != true*/)
                     {
-                        inpt = prompt("Try Again:");
+                        if(inpt === null)
+                        {
+                            chat_id = "12345678"; // reset to default chat ID if not found
+                            alert("Password Canceled. Redirecting to default chat.");
+                            window.location.href = "index.html?chatid="+chat_id;
+                            break;
+                        }
+                        else
+                        {
+                            inpt = prompt("Try Again:");
+                        }
                     }
                 }
                 //only shows up once password is correct
@@ -459,5 +469,32 @@ async function image_detect(url)
         img.onload = () => resolve(true); //Is Image
         img.onerror = () => resolve(false); //Is Not Image
         img.src = url;
+    });
+}
+
+function create_new_chat()
+{
+    if(uid == "nada")
+    {
+        alert("You must be logged in to create a new chat. Go here to do that: https://space356hosting.github.io/login/");
+        return;
+    }
+    const newChatRef = push(ref(db, 'chats/'));
+    const newChatId = newChatRef.key;
+    set(newChatRef,
+    {
+        name: "Untitled Chat",
+        password: "",
+    }).then(() =>
+    {
+        // Data saved successfully!
+        console.log("New chat created with ID: ", newChatId);
+        // Redirect to the new chat
+        window.location.href = "index.html?chatid="+newChatId;
+    })
+    .catch((error) =>
+    {
+        // The write failed...
+        console.error("Error creating new chat: ", error);
     });
 }
